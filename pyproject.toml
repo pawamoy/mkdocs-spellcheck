@@ -41,8 +41,8 @@ Discussions = "https://github.com/pawamoy/mkdocs-spellcheck/discussions"
 Gitter = "https://gitter.im/mkdocs-spellcheck/community"
 Funding = "https://github.com/sponsors/pawamoy"
 
-[project.scripts]
- = "mkdocs_spellcheck.cli:main"
+[project.entry-points."mkdocs.plugins"]
+spellcheck = "mkdocs_spellcheck.plugin:SpellCheckPlugin"
 
 [tool.pdm]
 version = {use_scm = true}
