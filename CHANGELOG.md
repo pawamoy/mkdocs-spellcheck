@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.1.1](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/0.1.1) - 2022-01-25
+
+<small>[Compare with 0.1.0](https://github.com/pawamoy/mkdocs-spellcheck/compare/0.1.0...0.1.1)</small>
+
+### Code Refactoring
+- Prefix logs with package name only ([7ea8ad9](https://github.com/pawamoy/mkdocs-spellcheck/commit/7ea8ad93dc0621f6c386b8928ba3b046bedfbe3e) by Timothée Mazzucotelli).
+
+
 ## [0.1.0](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/0.1.0) - 2022-01-25
 
 <small>[Compare with first commit](https://github.com/pawamoy/mkdocs-spellcheck/compare/4b2335e8caa3956fb6fd7c31a4473ea0e21e4e15...0.1.0)</small>
