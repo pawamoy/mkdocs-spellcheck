@@ -70,6 +70,7 @@ plugins:
 - mkdocstrings:
     watch:
     - src/mkdocs_spellcheck
+- section-index
 
 extra:
   social:
