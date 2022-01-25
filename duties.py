@@ -175,6 +175,9 @@ def check_docs(ctx):
     Arguments:
         ctx: The context instance (passed automatically).
     """
+    py_version = f"{sys.version_info.major}{sys.version_info.minor}"
+    if py_version in {"37", "38"}:
+        return  # it seems there's an issue with pdm run + future annotations
     Path("htmlcov").mkdir(parents=True, exist_ok=True)
     Path("htmlcov/index.html").touch(exist_ok=True)
     ctx.run("mkdocs build -s", title="Building documentation", pty=PTY)
