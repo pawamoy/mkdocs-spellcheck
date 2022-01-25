@@ -44,3 +44,25 @@ With [`pipx`](https://github.com/pipxproject/pipx):
 python3.7 -m pip install --user pipx
 pipx install mkdocs-spellcheck
 ```
+
+## Usage
+
+```yaml
+# mkdocs.yml
+plugins:
+- search
+- spellcheck:
+    # known_words can also be a list of words
+    known_words: known_words.txt
+
+    # ignore words in <code> tags
+    ignore_code: yes
+
+    # minimum length of words to consider
+    min_length: 2
+
+    # skip files entirely
+    skip_files:
+    - credits.md
+    - coverage.md
+```
