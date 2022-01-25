@@ -34,15 +34,8 @@ pyenv global system 3.7.12
 
 ## Installation
 
-With `pip`:
 ```bash
 pip install mkdocs-spellcheck
-```
-
-With [`pipx`](https://github.com/pipxproject/pipx):
-```bash
-python3.7 -m pip install --user pipx
-pipx install mkdocs-spellcheck
 ```
 
 ## Usage
