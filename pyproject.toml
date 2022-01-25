@@ -29,7 +29,9 @@ classifiers = [
     "Topic :: Utilities",
     "Typing :: Typed",
 ]
-dependencies = []
+dependencies = [
+    "symspellpy>=6.7.6",
+]
 
 [project.urls]
 Homepage = "https://pawamoy.github.io/mkdocs-spellcheck"
