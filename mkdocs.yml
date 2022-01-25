@@ -71,6 +71,11 @@ plugins:
     watch:
     - src/mkdocs_spellcheck
 - section-index
+- spellcheck:
+    known_words: known_words.txt
+    skip_files:
+    - credits.md
+    - coverage.md
 
 extra:
   social:
