@@ -45,4 +45,4 @@ def get_logger(name: str) -> LoggerAdapter:
     """
     logger = logging.getLogger(f"mkdocs.plugins.{name}")
     logger.addFilter(warning_filter)
-    return LoggerAdapter(name, logger)
+    return LoggerAdapter(name.split(".", 1)[0], logger)
