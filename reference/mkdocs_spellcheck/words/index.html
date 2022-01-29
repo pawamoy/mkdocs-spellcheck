@@ -723,13 +723,12 @@
 
 
 
-
   <div class="doc doc-object doc-function">
 
 
 
 <h2 id="mkdocs_spellcheck.words.get_words" class="doc doc-heading">
-<code class="highlight language-python"><span class="n">get_words</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">known_words</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ignore_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">get_words</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">known_words</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_capital</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ignore_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
 
 <a href="#mkdocs_spellcheck.words.get_words" class="headerlink" title="Permanent link">¤</a></h2>
@@ -768,6 +767,12 @@
         <td><code>2</code></td>
       </tr>
       <tr>
+        <td><code>max_capital</code></td>
+        <td><code>int</code></td>
+        <td><p>Maximum number of capital letters.</p></td>
+        <td><code>1</code></td>
+      </tr>
+      <tr>
         <td><code>ignore_code</code></td>
         <td><code>bool</code></td>
         <td><p>Ignore words in code tags.</p></td>
@@ -800,8 +805,10 @@
           <summary>Source code in <code>mkdocs_spellcheck/words.py</code></summary>
           <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_words</span><span class="p">(</span>
     <span class="n">html</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
     <span class="n">known_words</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">min_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">max_capital</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
     <span class="n">ignore_code</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">allow_unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
@@ -811,6 +818,7 @@
 <span class="sd">        html: The HTML text.</span>
 <span class="sd">        known_words: Words to exclude.</span>
 <span class="sd">        min_length: Words minimum length.</span>
+<span class="sd">        max_capital: Maximum number of capital letters.</span>
 <span class="sd">        ignore_code: Ignore words in code tags.</span>
 <span class="sd">        allow_unicode: Keep unicode characters.</span>
 
@@ -818,9 +826,10 @@
 <span class="sd">        A list of words.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">known_words</span> <span class="o">=</span> <span class="n">known_words</span> <span class="ow">or</span> <span class="nb">set</span><span class="p">()</span>
-    <span class="n">keep</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">_keep_word</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="n">min_length</span><span class="p">)</span>
-    <span class="n">words</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">keep</span><span class="p">,</span> <span class="n">_slugify</span><span class="p">(</span><span class="n">_strip_tags</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">ignore_code</span><span class="p">),</span> <span class="n">allow_unicode</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">))</span>
-    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">-</span> <span class="n">known_words</span><span class="p">)</span>
+    <span class="n">keep</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">_keep_word</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="n">min_length</span><span class="p">,</span> <span class="n">max_capital</span><span class="o">=</span><span class="n">max_capital</span><span class="p">)</span>
+    <span class="n">filtered</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">keep</span><span class="p">,</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">_strip_tags</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">ignore_code</span><span class="p">),</span> <span class="n">allow_unicode</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">))</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="p">{</span><span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">filtered</span><span class="p">}</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">words</span> <span class="o">-</span> <span class="n">known_words</span><span class="p">)</span>
 </code></pre></div>
         </details>
     </div>
