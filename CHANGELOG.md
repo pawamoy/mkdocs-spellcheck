@@ -5,6 +5,17 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.2.0](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/0.2.0) - 2022-01-29
+
+<small>[Compare with 0.1.1](https://github.com/pawamoy/mkdocs-spellcheck/compare/0.1.1...0.2.0)</small>
+
+### Features
+- Add `max_capital` option ([be3d48e](https://github.com/pawamoy/mkdocs-spellcheck/commit/be3d48e50b4e26219e8a33a399c3f8eeac440c22) by Timothée Mazzucotelli).
+
+### Code Refactoring
+- Don't consider words containing digits ([42d42f1](https://github.com/pawamoy/mkdocs-spellcheck/commit/42d42f16e565ec123be61061f54d1867f32de9a6) by Timothée Mazzucotelli). References: [#1](https://github.com/pawamoy/mkdocs-spellcheck/issues/1)
+
+
 ## [0.1.1](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/0.1.1) - 2022-01-25
 
 <small>[Compare with 0.1.0](https://github.com/pawamoy/mkdocs-spellcheck/compare/0.1.0...0.1.1)</small>
