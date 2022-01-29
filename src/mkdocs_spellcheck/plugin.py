@@ -37,6 +37,7 @@ class SpellCheckPlugin(BasePlugin):
         ("known_words", MkType((str, list), default=[])),
         ("skip_files", MkType(list, default=[])),
         ("min_length", MkType(int, default=2)),
+        ("max_capital", MkType(int, default=1)),
         ("ignore_code", MkType(bool, default=True)),
         ("allow_unicode", MkType(bool, default=False)),
     )
@@ -60,6 +61,7 @@ class SpellCheckPlugin(BasePlugin):
         """
         self.skip_files = self.config["skip_files"]
         self.min_length = self.config["min_length"]
+        self.max_capital = self.config["max_capital"]
         self.ignore_code = self.config["ignore_code"]
         self.allow_unicode = self.config["allow_unicode"]
 
@@ -85,7 +87,14 @@ class SpellCheckPlugin(BasePlugin):
             kwargs: Additional arguments passed by MkDocs.
         """
         if page.file.src_path not in self.skip_files:
-            words = get_words(html, self.known_words, self.min_length, self.ignore_code, self.allow_unicode)
+            words = get_words(
+                html,
+                known_words=self.known_words,
+                min_length=self.min_length,
+                max_capital=self.max_capital,
+                ignore_code=self.ignore_code,
+                allow_unicode=self.allow_unicode,
+            )
             for word in words:
                 suggestions = self.spell.lookup(word, Verbosity.CLOSEST, max_edit_distance=2)
                 candidates = "', '".join(suggestion.term for suggestion in suggestions if suggestion.term != word)

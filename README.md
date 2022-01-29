@@ -54,6 +54,12 @@ plugins:
     # minimum length of words to consider
     min_length: 2
 
+    # maximum number of capital letters in a word
+    max_capital: 1
+
+    # keep unicode characters
+    allow_unicode: no
+
     # skip files entirely
     skip_files:
     - credits.md

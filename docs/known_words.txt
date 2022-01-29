@@ -1,8 +1,6 @@
-mkdocs
 changelog
 behaviors
 http
 pawamoy
 sexualized
-html
 timothee
