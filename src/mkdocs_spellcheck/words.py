@@ -43,7 +43,6 @@ def _strip_tags(html, ignore_code):
 
 not_letters_nor_spaces = re.compile(r"[^\w\s-]")
 dashes_or_spaces = re.compile(r"[-\s]+")
-number = re.compile("[0-9]+")
 
 
 def _slugify(value, allow_unicode=False):
@@ -57,7 +56,12 @@ def _slugify(value, allow_unicode=False):
 
 
 def _keep_word(word, min_length):
-    return not word.isdigit() and len(word) >= min_length
+    if len(word) < min_length:
+        return False
+    for char in word:
+        if char.isdigit():
+            return False
+    return True
 
 
 def get_words(
