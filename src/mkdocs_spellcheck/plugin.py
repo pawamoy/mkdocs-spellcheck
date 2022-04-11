@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from importlib import resources
 from pathlib import Path
+from typing import Any
 
 from mkdocs.config import Config
 from mkdocs.config.config_options import Type as MkType
@@ -47,14 +48,14 @@ class SpellCheckPlugin(BasePlugin):
         self.spell: SymSpell = None
         super().__init__()
 
-    def on_config(self, config: Config, **kwargs) -> Config:
+    def on_config(self, config: Config, **kwargs: Any) -> Config:
         """Load words to ignore.
 
         Hook for the [`on_config` event](https://www.mkdocs.org/user-guide/plugins/#on_config).
 
         Arguments:
             config: The MkDocs config object.
-            kwargs: Additional arguments passed by MkDocs.
+            **kwargs: Additional arguments passed by MkDocs.
 
         Returns:
             The modified config.
@@ -76,7 +77,7 @@ class SpellCheckPlugin(BasePlugin):
             self.spell.load_dictionary(dictionary_path, 0, 1)
         return config
 
-    def on_page_content(self, html: str, page: Page, **kwargs) -> None:
+    def on_page_content(self, html: str, page: Page, **kwargs: Any) -> None:
         """Spell check everything.
 
         Hook for the [`on_page_content` event](https://www.mkdocs.org/user-guide/plugins/#on_page_content).
@@ -84,7 +85,7 @@ class SpellCheckPlugin(BasePlugin):
         Arguments:
             html: The HTML text.
             page: The page instance.
-            kwargs: Additional arguments passed by MkDocs.
+            **kwargs: Additional arguments passed by MkDocs.
         """
         if page.file.src_path not in self.skip_files:
             words = get_words(

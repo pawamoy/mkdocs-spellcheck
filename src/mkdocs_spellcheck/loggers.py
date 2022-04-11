@@ -11,7 +11,7 @@ from mkdocs.utils import warning_filter
 class LoggerAdapter(logging.LoggerAdapter):
     """A logger adapter to prefix messages."""
 
-    def __init__(self, prefix: str, logger):
+    def __init__(self, prefix: str, logger: logging.Logger):
         """Initialize the object.
 
         Arguments:
@@ -21,7 +21,7 @@ class LoggerAdapter(logging.LoggerAdapter):
         super().__init__(logger, {})
         self.prefix = prefix
 
-    def process(self, msg: str, kwargs) -> tuple[str, Any]:
+    def process(self, msg: str, kwargs: Any) -> tuple[str, Any]:
         """Process the message.
 
         Arguments:
