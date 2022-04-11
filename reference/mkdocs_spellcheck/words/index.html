@@ -723,6 +723,10 @@
 
 
 
+
+
+
+
   <div class="doc doc-object doc-function">
 
 
@@ -733,77 +737,132 @@
 
 <a href="#mkdocs_spellcheck.words.get_words" class="headerlink" title="Permanent link">¤</a></h2>
 
+
     <div class="doc doc-contents ">
 
       <p>Get words in HTML text.</p>
 
-<p><strong>Parameters:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Description</th>
-      <th>Default</th>
-    </tr>
-  </thead>
-  <tbody>
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
       <tr>
-        <td><code>html</code></td>
-        <td><code>str</code></td>
-        <td><p>The HTML text.</p></td>
-        <td><em>required</em></td>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
       </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>html</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The HTML text.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>known_words</code></td>
+          <td>
+                <code>set[str] | None</code>
+          </td>
+          <td><p>Words to exclude.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>min_length</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>Words minimum length.</p></td>
+          <td>
+                <code>2</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>max_capital</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>Maximum number of capital letters.</p></td>
+          <td>
+                <code>1</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>ignore_code</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>Ignore words in code tags.</p></td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>allow_unicode</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>Keep unicode characters.</p></td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
       <tr>
-        <td><code>known_words</code></td>
-        <td><code>set[str] | None</code></td>
-        <td><p>Words to exclude.</p></td>
-        <td><code>None</code></td>
+        <th>Type</th>
+        <th>Description</th>
       </tr>
-      <tr>
-        <td><code>min_length</code></td>
-        <td><code>int</code></td>
-        <td><p>Words minimum length.</p></td>
-        <td><code>2</code></td>
-      </tr>
-      <tr>
-        <td><code>max_capital</code></td>
-        <td><code>int</code></td>
-        <td><p>Maximum number of capital letters.</p></td>
-        <td><code>1</code></td>
-      </tr>
-      <tr>
-        <td><code>ignore_code</code></td>
-        <td><code>bool</code></td>
-        <td><p>Ignore words in code tags.</p></td>
-        <td><code>True</code></td>
-      </tr>
-      <tr>
-        <td><code>allow_unicode</code></td>
-        <td><code>bool</code></td>
-        <td><p>Keep unicode characters.</p></td>
-        <td><code>True</code></td>
-      </tr>
-  </tbody>
-</table>
-<p><strong>Returns:</strong></p>
-<table>
-  <thead>
-    <tr>
-      <th>Type</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>list[str]</code></td>
-      <td><p>A list of words.</p></td>
-    </tr>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>list[str]</code>
+          </td>
+          <td><p>A list of words.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
         <details class="quote">
           <summary>Source code in <code>mkdocs_spellcheck/words.py</code></summary>
-          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_words</span><span class="p">(</span>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span>
+<span class="normal">99</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_words</span><span class="p">(</span>
     <span class="n">html</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
     <span class="n">known_words</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -831,11 +890,11 @@
     <span class="n">words</span> <span class="o">=</span> <span class="p">{</span><span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">filtered</span><span class="p">}</span>
     <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">words</span> <span class="o">-</span> <span class="n">known_words</span><span class="p">)</span>
 </code></pre></div>
+</td></tr></table>
         </details>
     </div>
 
   </div>
-
 
 
 

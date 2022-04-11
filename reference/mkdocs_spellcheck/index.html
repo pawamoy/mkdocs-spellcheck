@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mkdocs_spellcheck.__init__" class="md-skip">
+        <a href="#mkdocs_spellcheck" class="md-skip">
           Skip to content
         </a>
       
@@ -627,9 +627,116 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#mkdocs_spellcheck.__init__" class="md-nav__link">
-    mkdocs_spellcheck.__init__
+  <a href="#mkdocs_spellcheck" class="md-nav__link">
+    mkdocs_spellcheck
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mkdocs_spellcheck.loggers" class="md-nav__link">
+    loggers
+  </a>
+  
+    <nav class="md-nav" aria-label="loggers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mkdocs_spellcheck.loggers.LoggerAdapter" class="md-nav__link">
+    LoggerAdapter
+  </a>
+  
+    <nav class="md-nav" aria-label="LoggerAdapter">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mkdocs_spellcheck.loggers.LoggerAdapter.__init__" class="md-nav__link">
+    __init__()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkdocs_spellcheck.loggers.LoggerAdapter.process" class="md-nav__link">
+    process()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkdocs_spellcheck.loggers.get_logger" class="md-nav__link">
+    get_logger()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mkdocs_spellcheck.plugin" class="md-nav__link">
+    plugin
+  </a>
+  
+    <nav class="md-nav" aria-label="plugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mkdocs_spellcheck.plugin.SpellCheckPlugin" class="md-nav__link">
+    SpellCheckPlugin
+  </a>
+  
+    <nav class="md-nav" aria-label="SpellCheckPlugin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mkdocs_spellcheck.plugin.SpellCheckPlugin.on_config" class="md-nav__link">
+    on_config()
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkdocs_spellcheck.plugin.SpellCheckPlugin.on_page_content" class="md-nav__link">
+    on_page_content()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mkdocs_spellcheck.words" class="md-nav__link">
+    words
+  </a>
+  
+    <nav class="md-nav" aria-label="words">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mkdocs_spellcheck.words.get_words" class="md-nav__link">
+    get_words()
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -654,12 +761,1154 @@
 
 <div class="doc doc-object doc-module">
 
-<a id="mkdocs_spellcheck.__init__"></a>
+<a id="mkdocs_spellcheck"></a>
     <div class="doc doc-contents first">
 
       <p>MkDocs SpellCheck package.</p>
 <p>A spell checker plugin for MkDocs.</p>
 
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="mkdocs_spellcheck.loggers" class="doc doc-heading">
+        <code>loggers</code>
+
+
+
+<a href="#mkdocs_spellcheck.loggers" class="headerlink" title="Permanent link">¤</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>Logging functions.</p>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="mkdocs_spellcheck.loggers.LoggerAdapter" class="doc doc-heading">
+          <code>LoggerAdapter</code>
+
+
+
+<a href="#mkdocs_spellcheck.loggers.LoggerAdapter" class="headerlink" title="Permanent link">¤</a></h3>
+
+
+    <div class="doc doc-contents ">
+        <p class="doc doc-class-bases">
+          Bases: <code>logging.<span title="logging.LoggerAdapter">LoggerAdapter</span></code></p>
+
+
+      <p>A logger adapter to prefix messages.</p>
+
+
+          <details class="quote">
+            <summary>Source code in <code>mkdocs_spellcheck/loggers.py</code></summary>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">LoggerAdapter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">LoggerAdapter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A logger adapter to prefix messages.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">logger</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Initialize the object.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            prefix: The string to insert in front of every message.</span>
+<span class="sd">            logger: The logger instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">logger</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span>
+
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Process the message.</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            msg: The message:</span>
+<span class="sd">            kwargs: Remaining arguments.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The processed message.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">kwargs</span>
+</code></pre></div>
+</td></tr></table>
+          </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h4 id="mkdocs_spellcheck.loggers.LoggerAdapter.__init__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">logger</span><span class="p">)</span></code>
+
+
+<a href="#mkdocs_spellcheck.loggers.LoggerAdapter.__init__" class="headerlink" title="Permanent link">¤</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+      <p>Initialize the object.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>prefix</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The string to insert in front of every message.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>logger</code></td>
+          <td>
+                <code>logging.<span title="logging.Logger">Logger</span></code>
+          </td>
+          <td><p>The logger instance.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>mkdocs_spellcheck/loggers.py</code></summary>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">logger</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Initialize the object.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        prefix: The string to insert in front of every message.</span>
+<span class="sd">        logger: The logger instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">logger</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">prefix</span> <span class="o">=</span> <span class="n">prefix</span>
+</code></pre></div>
+</td></tr></table>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h4 id="mkdocs_spellcheck.loggers.LoggerAdapter.process" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">process</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#mkdocs_spellcheck.loggers.LoggerAdapter.process" class="headerlink" title="Permanent link">¤</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+      <p>Process the message.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>msg</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The message:</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>kwargs</code></td>
+          <td>
+                <code><span title="typing.Any">Any</span></code>
+          </td>
+          <td><p>Remaining arguments.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>tuple[str, <span title="typing.Any">Any</span>]</code>
+          </td>
+          <td><p>The processed message.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>mkdocs_spellcheck/loggers.py</code></summary>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Process the message.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        msg: The message:</span>
+<span class="sd">        kwargs: Remaining arguments.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The processed message.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">prefix</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">msg</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">kwargs</span>
+</code></pre></div>
+</td></tr></table>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 id="mkdocs_spellcheck.loggers.get_logger" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_logger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></code>
+
+
+<a href="#mkdocs_spellcheck.loggers.get_logger" class="headerlink" title="Permanent link">¤</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+      <p>Return a pre-configured logger.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>name</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The name to use with <code>logging.getLogger</code>.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><a title="mkdocs_spellcheck.loggers.LoggerAdapter" href="loggers/#mkdocs_spellcheck.loggers.LoggerAdapter">LoggerAdapter</a></code>
+          </td>
+          <td><p>A logger configured to work well in MkDocs.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>mkdocs_spellcheck/loggers.py</code></summary>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_logger</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">LoggerAdapter</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Return a pre-configured logger.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        name: The name to use with `logging.getLogger`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A logger configured to work well in MkDocs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mkdocs.plugins.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">addFilter</span><span class="p">(</span><span class="n">warning_filter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">LoggerAdapter</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">logger</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="mkdocs_spellcheck.plugin" class="doc doc-heading">
+        <code>plugin</code>
+
+
+
+<a href="#mkdocs_spellcheck.plugin" class="headerlink" title="Permanent link">¤</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>MkDocs SpellCheck package.</p>
+<p>A spell checker plugin for MkDocs.</p>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h3 id="mkdocs_spellcheck.plugin.SpellCheckPlugin" class="doc doc-heading">
+          <code>SpellCheckPlugin</code>
+
+
+
+<a href="#mkdocs_spellcheck.plugin.SpellCheckPlugin" class="headerlink" title="Permanent link">¤</a></h3>
+
+
+    <div class="doc doc-contents ">
+        <p class="doc doc-class-bases">
+          Bases: <code><span title="mkdocs.plugins.BasePlugin">BasePlugin</span></code></p>
+
+
+      <p>A <code>mkdocs</code> plugin.</p>
+<p>This plugin defines the following event hooks:</p>
+<ul>
+<li><code>on_config</code></li>
+<li><code>on_page_content</code></li>
+</ul>
+<p>Check the <a href="https://www.mkdocs.org/user-guide/plugins/#developing-plugins">Developing Plugins</a> page of <code>mkdocs</code>
+for more information about its plugin system.</p>
+
+
+          <details class="quote">
+            <summary>Source code in <code>mkdocs_spellcheck/plugin.py</code></summary>
+            <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SpellCheckPlugin</span><span class="p">(</span><span class="n">BasePlugin</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A `mkdocs` plugin.</span>
+
+<span class="sd">    This plugin defines the following event hooks:</span>
+
+<span class="sd">    - `on_config`</span>
+<span class="sd">    - `on_page_content`</span>
+
+<span class="sd">    Check the [Developing Plugins](https://www.mkdocs.org/user-guide/plugins/#developing-plugins) page of `mkdocs`</span>
+<span class="sd">    for more information about its plugin system.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">config_scheme</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">MkType</span><span class="p">],</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="s2">&quot;known_words&quot;</span><span class="p">,</span> <span class="n">MkType</span><span class="p">((</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="n">default</span><span class="o">=</span><span class="p">[])),</span>
+        <span class="p">(</span><span class="s2">&quot;skip_files&quot;</span><span class="p">,</span> <span class="n">MkType</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="p">[])),</span>
+        <span class="p">(</span><span class="s2">&quot;min_length&quot;</span><span class="p">,</span> <span class="n">MkType</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">2</span><span class="p">)),</span>
+        <span class="p">(</span><span class="s2">&quot;max_capital&quot;</span><span class="p">,</span> <span class="n">MkType</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1</span><span class="p">)),</span>
+        <span class="p">(</span><span class="s2">&quot;ignore_code&quot;</span><span class="p">,</span> <span class="n">MkType</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">True</span><span class="p">)),</span>
+        <span class="p">(</span><span class="s2">&quot;allow_unicode&quot;</span><span class="p">,</span> <span class="n">MkType</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)),</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># noqa: D107</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">known_words</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spell</span><span class="p">:</span> <span class="n">SymSpell</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">on_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Load words to ignore.</span>
+
+<span class="sd">        Hook for the [`on_config` event](https://www.mkdocs.org/user-guide/plugins/#on_config).</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            config: The MkDocs config object.</span>
+<span class="sd">            **kwargs: Additional arguments passed by MkDocs.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The modified config.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">skip_files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;skip_files&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;min_length&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_capital</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;max_capital&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ignore_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;ignore_code&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">allow_unicode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;allow_unicode&quot;</span><span class="p">]</span>
+
+        <span class="n">known_words</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;known_words&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">known_words</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">known_words</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;docs_dir&quot;</span><span class="p">],</span> <span class="n">known_words</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">known_words</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">known_words</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">spell</span> <span class="o">=</span> <span class="n">SymSpell</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">resources</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="s2">&quot;symspellpy&quot;</span><span class="p">,</span> <span class="s2">&quot;frequency_dictionary_en_82_765.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dictionary_path</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spell</span><span class="o">.</span><span class="n">load_dictionary</span><span class="p">(</span><span class="n">dictionary_path</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">config</span>
+
+    <span class="k">def</span> <span class="nf">on_page_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">page</span><span class="p">:</span> <span class="n">Page</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Spell check everything.</span>
+
+<span class="sd">        Hook for the [`on_page_content` event](https://www.mkdocs.org/user-guide/plugins/#on_page_content).</span>
+
+<span class="sd">        Arguments:</span>
+<span class="sd">            html: The HTML text.</span>
+<span class="sd">            page: The page instance.</span>
+<span class="sd">            **kwargs: Additional arguments passed by MkDocs.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">page</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">src_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">skip_files</span><span class="p">:</span>
+            <span class="n">words</span> <span class="o">=</span> <span class="n">get_words</span><span class="p">(</span>
+                <span class="n">html</span><span class="p">,</span>
+                <span class="n">known_words</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">known_words</span><span class="p">,</span>
+                <span class="n">min_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">min_length</span><span class="p">,</span>
+                <span class="n">max_capital</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_capital</span><span class="p">,</span>
+                <span class="n">ignore_code</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ignore_code</span><span class="p">,</span>
+                <span class="n">allow_unicode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">allow_unicode</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+                <span class="n">suggestions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spell</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">Verbosity</span><span class="o">.</span><span class="n">CLOSEST</span><span class="p">,</span> <span class="n">max_edit_distance</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">suggestions</span><span class="p">:</span>
+                    <span class="n">candidates</span> <span class="o">=</span> <span class="s2">&quot;&#39;, &#39;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">suggestion</span><span class="o">.</span><span class="n">term</span> <span class="k">for</span> <span class="n">suggestion</span> <span class="ow">in</span> <span class="n">suggestions</span> <span class="k">if</span> <span class="n">suggestion</span><span class="o">.</span><span class="n">term</span> <span class="o">!=</span> <span class="n">word</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">candidates</span><span class="p">:</span>
+                        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">page</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">src_path</span><span class="si">}</span><span class="s2">: Misspelled &#39;</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s2">&#39;, did you mean &#39;</span><span class="si">{</span><span class="n">candidates</span><span class="si">}</span><span class="s2">&#39;?&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">page</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">src_path</span><span class="si">}</span><span class="s2">: Misspelled &#39;</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s2">&#39;, no suggestions&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+          </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h4 id="mkdocs_spellcheck.plugin.SpellCheckPlugin.on_config" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">on_config</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#mkdocs_spellcheck.plugin.SpellCheckPlugin.on_config" class="headerlink" title="Permanent link">¤</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+      <p>Load words to ignore.</p>
+<p>Hook for the <a href="https://www.mkdocs.org/user-guide/plugins/#on_config"><code>on_config</code> event</a>.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>config</code></td>
+          <td>
+                <code><span title="mkdocs.config.Config">Config</span></code>
+          </td>
+          <td><p>The MkDocs config object.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>**kwargs</code></td>
+          <td>
+                <code><span title="typing.Any">Any</span></code>
+          </td>
+          <td><p>Additional arguments passed by MkDocs.</p></td>
+          <td>
+                <code>{}</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code><span title="mkdocs.config.Config">Config</span></code>
+          </td>
+          <td><p>The modified config.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>mkdocs_spellcheck/plugin.py</code></summary>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">on_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Config</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Config</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Load words to ignore.</span>
+
+<span class="sd">    Hook for the [`on_config` event](https://www.mkdocs.org/user-guide/plugins/#on_config).</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        config: The MkDocs config object.</span>
+<span class="sd">        **kwargs: Additional arguments passed by MkDocs.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        The modified config.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">skip_files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;skip_files&quot;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">min_length</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;min_length&quot;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">max_capital</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;max_capital&quot;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">ignore_code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;ignore_code&quot;</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">allow_unicode</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;allow_unicode&quot;</span><span class="p">]</span>
+
+    <span class="n">known_words</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;known_words&quot;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">known_words</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">known_words</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;docs_dir&quot;</span><span class="p">],</span> <span class="n">known_words</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">known_words</span> <span class="o">|=</span> <span class="nb">set</span><span class="p">(</span><span class="n">known_words</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">spell</span> <span class="o">=</span> <span class="n">SymSpell</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">resources</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="s2">&quot;symspellpy&quot;</span><span class="p">,</span> <span class="s2">&quot;frequency_dictionary_en_82_765.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dictionary_path</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spell</span><span class="o">.</span><span class="n">load_dictionary</span><span class="p">(</span><span class="n">dictionary_path</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">config</span>
+</code></pre></div>
+</td></tr></table>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h4 id="mkdocs_spellcheck.plugin.SpellCheckPlugin.on_page_content" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">on_page_content</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">page</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+
+<a href="#mkdocs_spellcheck.plugin.SpellCheckPlugin.on_page_content" class="headerlink" title="Permanent link">¤</a></h4>
+
+
+    <div class="doc doc-contents ">
+
+      <p>Spell check everything.</p>
+<p>Hook for the <a href="https://www.mkdocs.org/user-guide/plugins/#on_page_content"><code>on_page_content</code> event</a>.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>html</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The HTML text.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>page</code></td>
+          <td>
+                <code><span title="mkdocs.structure.pages.Page">Page</span></code>
+          </td>
+          <td><p>The page instance.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>**kwargs</code></td>
+          <td>
+                <code><span title="typing.Any">Any</span></code>
+          </td>
+          <td><p>Additional arguments passed by MkDocs.</p></td>
+          <td>
+                <code>{}</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>mkdocs_spellcheck/plugin.py</code></summary>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">on_page_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">html</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">page</span><span class="p">:</span> <span class="n">Page</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Spell check everything.</span>
+
+<span class="sd">    Hook for the [`on_page_content` event](https://www.mkdocs.org/user-guide/plugins/#on_page_content).</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        html: The HTML text.</span>
+<span class="sd">        page: The page instance.</span>
+<span class="sd">        **kwargs: Additional arguments passed by MkDocs.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">page</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">src_path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">skip_files</span><span class="p">:</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="n">get_words</span><span class="p">(</span>
+            <span class="n">html</span><span class="p">,</span>
+            <span class="n">known_words</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">known_words</span><span class="p">,</span>
+            <span class="n">min_length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">min_length</span><span class="p">,</span>
+            <span class="n">max_capital</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">max_capital</span><span class="p">,</span>
+            <span class="n">ignore_code</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ignore_code</span><span class="p">,</span>
+            <span class="n">allow_unicode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">allow_unicode</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+            <span class="n">suggestions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">spell</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">Verbosity</span><span class="o">.</span><span class="n">CLOSEST</span><span class="p">,</span> <span class="n">max_edit_distance</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">suggestions</span><span class="p">:</span>
+                <span class="n">candidates</span> <span class="o">=</span> <span class="s2">&quot;&#39;, &#39;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">suggestion</span><span class="o">.</span><span class="n">term</span> <span class="k">for</span> <span class="n">suggestion</span> <span class="ow">in</span> <span class="n">suggestions</span> <span class="k">if</span> <span class="n">suggestion</span><span class="o">.</span><span class="n">term</span> <span class="o">!=</span> <span class="n">word</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">candidates</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">page</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">src_path</span><span class="si">}</span><span class="s2">: Misspelled &#39;</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s2">&#39;, did you mean &#39;</span><span class="si">{</span><span class="n">candidates</span><span class="si">}</span><span class="s2">&#39;?&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">page</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">src_path</span><span class="si">}</span><span class="s2">: Misspelled &#39;</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s2">&#39;, no suggestions&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-module">
+
+
+
+<h2 id="mkdocs_spellcheck.words" class="doc doc-heading">
+        <code>words</code>
+
+
+
+<a href="#mkdocs_spellcheck.words" class="headerlink" title="Permanent link">¤</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>This module contains a function to retrieve words from HTML text.</p>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-function">
+
+
+
+<h3 id="mkdocs_spellcheck.words.get_words" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">get_words</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">known_words</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">max_capital</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ignore_code</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">allow_unicode</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+
+<a href="#mkdocs_spellcheck.words.get_words" class="headerlink" title="Permanent link">¤</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+      <p>Get words in HTML text.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>html</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td><p>The HTML text.</p></td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>known_words</code></td>
+          <td>
+                <code>set[str] | None</code>
+          </td>
+          <td><p>Words to exclude.</p></td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>min_length</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>Words minimum length.</p></td>
+          <td>
+                <code>2</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>max_capital</code></td>
+          <td>
+                <code>int</code>
+          </td>
+          <td><p>Maximum number of capital letters.</p></td>
+          <td>
+                <code>1</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>ignore_code</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>Ignore words in code tags.</p></td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>allow_unicode</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td><p>Keep unicode characters.</p></td>
+          <td>
+                <code>True</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>list[str]</code>
+          </td>
+          <td><p>A list of words.</p></td>
+        </tr>
+    </tbody>
+  </table>
+
+        <details class="quote">
+          <summary>Source code in <code>mkdocs_spellcheck/words.py</code></summary>
+          <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span>
+<span class="normal">99</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">get_words</span><span class="p">(</span>
+    <span class="n">html</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">known_words</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">min_length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">max_capital</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">ignore_code</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">allow_unicode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Get words in HTML text.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        html: The HTML text.</span>
+<span class="sd">        known_words: Words to exclude.</span>
+<span class="sd">        min_length: Words minimum length.</span>
+<span class="sd">        max_capital: Maximum number of capital letters.</span>
+<span class="sd">        ignore_code: Ignore words in code tags.</span>
+<span class="sd">        allow_unicode: Keep unicode characters.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        A list of words.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">known_words</span> <span class="o">=</span> <span class="n">known_words</span> <span class="ow">or</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">keep</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">_keep_word</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="n">min_length</span><span class="p">,</span> <span class="n">max_capital</span><span class="o">=</span><span class="n">max_capital</span><span class="p">)</span>
+    <span class="n">filtered</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="n">keep</span><span class="p">,</span> <span class="n">_normalize</span><span class="p">(</span><span class="n">_strip_tags</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">ignore_code</span><span class="p">),</span> <span class="n">allow_unicode</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">))</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="p">{</span><span class="n">word</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">filtered</span><span class="p">}</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">words</span> <span class="o">-</span> <span class="n">known_words</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
+
+
+
+
+  </div>
 
     </div>
 
