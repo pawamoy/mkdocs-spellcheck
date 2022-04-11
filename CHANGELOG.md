@@ -5,6 +5,15 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.2.1](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/0.2.1) - 2022-04-11
+
+<small>[Compare with 0.2.0](https://github.com/pawamoy/mkdocs-spellcheck/compare/0.2.0...0.2.1)</small>
+
+### Bug Fixes
+- Prevent words concatenation ([06d36a2](https://github.com/pawamoy/mkdocs-spellcheck/commit/06d36a2a4fb9f93d92b006dfe2763a544f8f842a) by Timothée Mazzucotelli). [Issue #9](https://github.com/pawamoy/mkdocs-spellcheck/issues/9)
+- Warn even when there are no suggestions ([f6621f6](https://github.com/pawamoy/mkdocs-spellcheck/commit/f6621f6e87a7974d15d21312ee4b9b803372eb89) by Timothée Mazzucotelli). [Issue #12](https://github.com/pawamoy/mkdocs-spellcheck/issues/12)
+
+
 ## [0.2.0](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/0.2.0) - 2022-01-29
 
 <small>[Compare with 0.1.1](https://github.com/pawamoy/mkdocs-spellcheck/compare/0.1.1...0.2.0)</small>
