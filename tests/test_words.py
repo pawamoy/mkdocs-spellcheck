@@ -99,3 +99,9 @@ def test_allow_unicode_characters(text, allow_unicode, expected):
         expected: Expected list result (parametrized).
     """
     assert get_words(text, allow_unicode=allow_unicode) == expected
+
+
+def test_prevent_words_concatenation():
+    """Assert words are not concatenated when removing HTML tags."""
+    html = "<p>Hello</p><p>world!</p>"
+    assert get_words(html) == ["hello", "world"]
