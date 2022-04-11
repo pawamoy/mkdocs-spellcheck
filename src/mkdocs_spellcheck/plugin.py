@@ -97,6 +97,9 @@ class SpellCheckPlugin(BasePlugin):
             )
             for word in words:
                 suggestions = self.spell.lookup(word, Verbosity.CLOSEST, max_edit_distance=2)
-                candidates = "', '".join(suggestion.term for suggestion in suggestions if suggestion.term != word)
-                if candidates:
-                    logger.warning(f"{page.file.src_path}: Misspelled '{word}', did you mean '{candidates}'?")
+                if suggestions:
+                    candidates = "', '".join(suggestion.term for suggestion in suggestions if suggestion.term != word)
+                    if candidates:
+                        logger.warning(f"{page.file.src_path}: Misspelled '{word}', did you mean '{candidates}'?")
+                else:
+                    logger.warning(f"{page.file.src_path}: Misspelled '{word}', no suggestions")
