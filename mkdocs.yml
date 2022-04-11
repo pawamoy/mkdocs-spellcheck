@@ -76,6 +76,7 @@ plugins:
     skip_files:
     - credits.md
     - coverage.md
+    - reference/SUMMARY.md
 
 extra:
   social:
