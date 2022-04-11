@@ -22,6 +22,7 @@ class _MLStripper(HTMLParser):
     def handle_starttag(self, tag, attrs):
         if tag == "code":
             self.in_code_tag = True
+        self.text.write(" ")
 
     def handle_stoptag(self, tag, attrs):
         if tag == "code":
