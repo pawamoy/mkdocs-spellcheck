@@ -5,3 +5,13 @@ pawamoy
 sexualized
 timothee
 mazzucotelli
+pdm
+pyproject
+fixups
+ll
+localhost
+makefile
+repo
+virtualenv
+pre
+config
