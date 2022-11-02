@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [0.2.2](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/0.2.2) - 2022-11-02
+
+<small>[Compare with 0.2.1](https://github.com/pawamoy/mkdocs-spellcheck/compare/0.2.1...0.2.2)</small>
+
+### Bug Fixes
+- Correctly reset HTML stripper state after code block ([3db4add](https://github.com/pawamoy/mkdocs-spellcheck/commit/3db4addd5553083d12f48c8dd41873da01ce48f9) by Timothée Mazzucotelli). [Issue #13](https://github.com/pawamoy/mkdocs-spellcheck/issues/13)
+
+
 ## [0.2.1](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/0.2.1) - 2022-04-11
 
 <small>[Compare with 0.2.0](https://github.com/pawamoy/mkdocs-spellcheck/compare/0.2.0...0.2.1)</small>
