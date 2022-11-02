@@ -105,3 +105,9 @@ def test_prevent_words_concatenation():
     """Assert words are not concatenated when removing HTML tags."""
     html = "<p>Hello</p><p>world!</p>"
     assert get_words(html) == ["hello", "world"]
+
+
+def test_reset_after_code_endtag():
+    """Assert the HTML stripper correctly resets its state after finding a `</code>` end tag."""
+    html = "<p>Some</p><code>code</code><p>snippet</p>"
+    assert "snippet" in get_words(html, ignore_code=True)
