@@ -72,8 +72,16 @@ plugins:
     nav_file: SUMMARY.md
 - coverage
 - section-index
-- mkdocstrings
+- mkdocstrings:
+    handlers:
+      python:
+        import:
+        - https://www.mkdocs.org/objects.inv
 - spellcheck:
+    backends:
+    - codespell:
+        dictionaries: [clear, rare, code]
+    - symspellpy
     known_words: known_words.txt
     skip_files:
     - credits.md

@@ -6,7 +6,6 @@ A spell checker plugin for MkDocs.
 
 from __future__ import annotations
 
-from importlib import resources
 from pathlib import Path
 from typing import Any
 
@@ -14,12 +13,19 @@ from mkdocs.config import Config
 from mkdocs.config.config_options import Type as MkType
 from mkdocs.plugins import BasePlugin
 from mkdocs.structure.pages import Page
-from symspellpy import SymSpell, Verbosity
+from symspellpy import SymSpell
 
+from mkdocs_spellcheck.backends import codespell, symspellpy
 from mkdocs_spellcheck.loggers import get_logger
 from mkdocs_spellcheck.words import get_words
 
 logger = get_logger(__name__)
+
+
+backends_map: dict[str, Any] = {
+    "symspellpy": symspellpy.SymspellpyBackend,
+    "codespell": codespell.CodespellBackend,
+}
 
 
 class SpellCheckPlugin(BasePlugin):
@@ -35,6 +41,7 @@ class SpellCheckPlugin(BasePlugin):
     """
 
     config_scheme: tuple[tuple[str, MkType], ...] = (
+        ("backends", MkType(list, default=["symspellpy"])),
         ("known_words", MkType((str, list), default=[])),
         ("skip_files", MkType(list, default=[])),
         ("min_length", MkType(int, default=2)),
@@ -60,6 +67,7 @@ class SpellCheckPlugin(BasePlugin):
         Returns:
             The modified config.
         """
+        self.backends_config = self.config["backends"]
         self.skip_files = self.config["skip_files"]
         self.min_length = self.config["min_length"]
         self.max_capital = self.config["max_capital"]
@@ -72,9 +80,18 @@ class SpellCheckPlugin(BasePlugin):
         else:
             self.known_words |= set(known_words)
 
-        self.spell = SymSpell()
-        with resources.path("symspellpy", "frequency_dictionary_en_82_765.txt") as dictionary_path:
-            self.spell.load_dictionary(dictionary_path, 0, 1)
+        self.backends = {}
+        for backend_conf in self.backends_config:
+            if isinstance(backend_conf, str):
+                backend_name = backend_conf
+                backend_config = {}
+            else:
+                backend_name, backend_config = next(iter(backend_conf.items()))
+            self.backends[backend_name] = backends_map[backend_name](
+                known_words=self.known_words,
+                config=backend_config,
+            )
+
         return config
 
     def on_page_content(self, html: str, page: Page, **kwargs: Any) -> None:
@@ -97,10 +114,5 @@ class SpellCheckPlugin(BasePlugin):
                 allow_unicode=self.allow_unicode,
             )
             for word in words:
-                suggestions = self.spell.lookup(word, Verbosity.CLOSEST, max_edit_distance=2)
-                if suggestions:
-                    candidates = "', '".join(suggestion.term for suggestion in suggestions if suggestion.term != word)
-                    if candidates:
-                        logger.warning(f"{page.file.src_path}: Misspelled '{word}', did you mean '{candidates}'?")
-                else:
-                    logger.warning(f"{page.file.src_path}: Misspelled '{word}', no suggestions")
+                for backend in self.backends.values():
+                    backend.check(page, word)
