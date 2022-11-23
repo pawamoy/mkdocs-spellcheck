@@ -78,6 +78,7 @@ plugins:
         import:
         - https://www.mkdocs.org/objects.inv
 - spellcheck:
+    strict_only: yes
     backends:
     - codespell:
         dictionaries: [clear, rare, code]
