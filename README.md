@@ -58,7 +58,12 @@ plugins:
     skip_files:
     - credits.md
     - coverage.md
+
+    # whether to only check in strict mode
+    strict_only: yes
 ```
+
+By default, the `symspellpy` backend is used.
 
 ### `codespell`
 
