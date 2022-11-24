@@ -5,6 +5,25 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.0.0](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/1.0.0) - 2022-11-24
+
+<small>[Compare with 0.2.2](https://github.com/pawamoy/mkdocs-spellcheck/compare/0.2.2...1.0.0)</small>
+
+### Breaking Changes
+
+You must now specify an extra when installing `mkdocs-spellcheck`:
+
+```
+pip install mkdocs-spellcheck[all]         # install all spelling backends
+pip install mkdocs-spellcheck[codespell]   # detects common mistakes
+pip install mkdocs-spellcheck[symspellpy]  # uses the english dictionary
+```
+
+### Features
+- Add option to run only when strict mode is enabled ([d6520d9](https://github.com/pawamoy/mkdocs-spellcheck/commit/d6520d93483fe5e50b123692d3e269d2c0630235) by Timothée Mazzucotelli). [PR #15](https://github.com/pawamoy/mkdocs-spellcheck/issues/15)
+- Add `codespell` backend ([bc8e84c](https://github.com/pawamoy/mkdocs-spellcheck/commit/bc8e84caebbf88d707dfcc4d2f9116444d7b01c6) by Timothée Mazzucotelli). [Issue #11](https://github.com/pawamoy/mkdocs-spellcheck/issues/11)
+
+
 ## [0.2.2](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/0.2.2) - 2022-11-02
 
 <small>[Compare with 0.2.1](https://github.com/pawamoy/mkdocs-spellcheck/compare/0.2.1...0.2.2)</small>
