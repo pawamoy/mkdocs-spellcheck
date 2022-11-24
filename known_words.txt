@@ -15,3 +15,6 @@ repo
 virtualenv
 pre
 config
+backend
+backends
+mkdocs

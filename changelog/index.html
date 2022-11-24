@@ -394,6 +394,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#100-2022-11-24" class="md-nav__link">
+    1.0.0 - 2022-11-24
+  </a>
+  
+    <nav class="md-nav" aria-label="1.0.0 - 2022-11-24">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    Breaking Changes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    Features
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#022-2022-11-02" class="md-nav__link">
     0.2.2 - 2022-11-02
   </a>
@@ -442,7 +469,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
+  <a href="#features_1" class="md-nav__link">
     Features
   </a>
   
@@ -503,7 +530,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#features_1" class="md-nav__link">
+  <a href="#features_2" class="md-nav__link">
     Features
   </a>
   
@@ -616,6 +643,73 @@
           mkdocs_spellcheck
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1" type="checkbox" id="__nav_2_1_1" >
+      
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../reference/mkdocs_spellcheck/backends/">backends</a>
+          
+            <label for="__nav_2_1_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="backends" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          backends
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/mkdocs_spellcheck/backends/codespell/" class="md-nav__link">
+        codespell
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/mkdocs_spellcheck/backends/symspellpy/" class="md-nav__link">
+        symspellpy
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
           
             
               
@@ -790,6 +884,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#100-2022-11-24" class="md-nav__link">
+    1.0.0 - 2022-11-24
+  </a>
+  
+    <nav class="md-nav" aria-label="1.0.0 - 2022-11-24">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breaking-changes" class="md-nav__link">
+    Breaking Changes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#features" class="md-nav__link">
+    Features
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#022-2022-11-02" class="md-nav__link">
     0.2.2 - 2022-11-02
   </a>
@@ -838,7 +959,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#features" class="md-nav__link">
+  <a href="#features_1" class="md-nav__link">
     Features
   </a>
   
@@ -899,7 +1020,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#features_1" class="md-nav__link">
+  <a href="#features_2" class="md-nav__link">
     Features
   </a>
   
@@ -935,6 +1056,19 @@
 <p>The format is based on <a href="http://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>
 and this project adheres to <a href="http://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
 <!-- insertion marker -->
+<h2 id="100-2022-11-24"><a href="https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/1.0.0">1.0.0</a> - 2022-11-24<a class="headerlink" href="#100-2022-11-24" title="Permanent link">¤</a></h2>
+<p><small><a href="https://github.com/pawamoy/mkdocs-spellcheck/compare/0.2.2...1.0.0">Compare with 0.2.2</a></small></p>
+<h3 id="breaking-changes">Breaking Changes<a class="headerlink" href="#breaking-changes" title="Permanent link">¤</a></h3>
+<p>You must now specify an extra when installing <code>mkdocs-spellcheck</code>:</p>
+<div class="highlight"><pre><span></span><code>pip install mkdocs-spellcheck[all]         # install all spelling backends
+pip install mkdocs-spellcheck[codespell]   # detects common mistakes
+pip install mkdocs-spellcheck[symspellpy]  # uses the english dictionary
+</code></pre></div>
+<h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">¤</a></h3>
+<ul>
+<li>Add option to run only when strict mode is enabled (<a href="https://github.com/pawamoy/mkdocs-spellcheck/commit/d6520d93483fe5e50b123692d3e269d2c0630235">d6520d9</a> by Timothée Mazzucotelli). <a href="https://github.com/pawamoy/mkdocs-spellcheck/issues/15">PR #15</a></li>
+<li>Add <code>codespell</code> backend (<a href="https://github.com/pawamoy/mkdocs-spellcheck/commit/bc8e84caebbf88d707dfcc4d2f9116444d7b01c6">bc8e84c</a> by Timothée Mazzucotelli). <a href="https://github.com/pawamoy/mkdocs-spellcheck/issues/11">Issue #11</a></li>
+</ul>
 <h2 id="022-2022-11-02"><a href="https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/0.2.2">0.2.2</a> - 2022-11-02<a class="headerlink" href="#022-2022-11-02" title="Permanent link">¤</a></h2>
 <p><small><a href="https://github.com/pawamoy/mkdocs-spellcheck/compare/0.2.1...0.2.2">Compare with 0.2.1</a></small></p>
 <h3 id="bug-fixes">Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">¤</a></h3>
@@ -950,7 +1084,7 @@ and this project adheres to <a href="http://semver.org/spec/v2.0.0.html">Semanti
 </ul>
 <h2 id="020-2022-01-29"><a href="https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/0.2.0">0.2.0</a> - 2022-01-29<a class="headerlink" href="#020-2022-01-29" title="Permanent link">¤</a></h2>
 <p><small><a href="https://github.com/pawamoy/mkdocs-spellcheck/compare/0.1.1...0.2.0">Compare with 0.1.1</a></small></p>
-<h3 id="features">Features<a class="headerlink" href="#features" title="Permanent link">¤</a></h3>
+<h3 id="features_1">Features<a class="headerlink" href="#features_1" title="Permanent link">¤</a></h3>
 <ul>
 <li>Add <code>max_capital</code> option (<a href="https://github.com/pawamoy/mkdocs-spellcheck/commit/be3d48e50b4e26219e8a33a399c3f8eeac440c22">be3d48e</a> by Timothée Mazzucotelli). <a href="https://github.com/pawamoy/mkdocs-spellcheck/issues/2">Issue #2</a></li>
 </ul>
@@ -976,7 +1110,7 @@ and this project adheres to <a href="http://semver.org/spec/v2.0.0.html">Semanti
 <li>Clean up (<a href="https://github.com/pawamoy/mkdocs-spellcheck/commit/e7c0e46c6c73fdbdf1a91d37fb544a63d3651006">e7c0e46</a> by Timothée Mazzucotelli).</li>
 <li>Remove useless files (<a href="https://github.com/pawamoy/mkdocs-spellcheck/commit/4e85cd0a222dc29443b649ef34a3533163faa63e">4e85cd0</a> by Timothée Mazzucotelli).</li>
 </ul>
-<h3 id="features_1">Features<a class="headerlink" href="#features_1" title="Permanent link">¤</a></h3>
+<h3 id="features_2">Features<a class="headerlink" href="#features_2" title="Permanent link">¤</a></h3>
 <ul>
 <li>Implement spell check plugin (<a href="https://github.com/pawamoy/mkdocs-spellcheck/commit/3a1367b9a5ebd04ee44d8591119e00be67a2410a">3a1367b</a> by Timothée Mazzucotelli).</li>
 <li>Generate project using pawamoy/copier-pdm template (<a href="https://github.com/pawamoy/mkdocs-spellcheck/commit/4b2335e8caa3956fb6fd7c31a4473ea0e21e4e15">4b2335e</a> by Timothée Mazzucotelli).</li>

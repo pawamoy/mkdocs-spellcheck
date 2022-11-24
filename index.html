@@ -391,6 +391,19 @@
     Usage
   </a>
   
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#codespell" class="md-nav__link">
+    codespell
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -509,6 +522,73 @@
           mkdocs_spellcheck
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1_1" type="checkbox" id="__nav_2_1_1" >
+      
+      
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="reference/mkdocs_spellcheck/backends/">backends</a>
+          
+            <label for="__nav_2_1_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" aria-label="backends" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_1_1">
+          <span class="md-nav__icon md-icon"></span>
+          backends
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/mkdocs_spellcheck/backends/codespell/" class="md-nav__link">
+        codespell
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/mkdocs_spellcheck/backends/symspellpy/" class="md-nav__link">
+        symspellpy
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
           
             
               
@@ -694,6 +774,19 @@
     Usage
   </a>
   
+    <nav class="md-nav" aria-label="Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#codespell" class="md-nav__link">
+    codespell
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -723,14 +816,31 @@
 <a href="https://gitpod.io/#https://github.com/pawamoy/mkdocs-spellcheck"><img alt="gitpod" src="https://img.shields.io/badge/gitpod-workspace-blue.svg?style=flat" /></a>
 <a href="https://gitter.im/mkdocs-spellcheck/community"><img alt="gitter" src="https://badges.gitter.im/join%20chat.svg" /></a></p>
 <p>A spell checker plugin for MkDocs.</p>
+<p>This plugin can use different backends
+to check the spelling of words in your final HTML pages.
+These backends are:</p>
+<ul>
+<li><a href="https://github.com/codespell-project/codespell"><code>codespell</code></a></li>
+<li><a href="https://github.com/mammothb/symspellpy"><code>symspellpy</code></a></li>
+</ul>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">¤</a></h2>
-<div class="highlight"><pre><span></span><code>pip install mkdocs-spellcheck
+<p>To install all backends, use the <code>all</code> extra.
+Otherwise specify the name(s) of the backend(s) as extra.</p>
+<div class="highlight"><pre><span></span><code>pip install mkdocs-spellcheck<span class="o">[</span>all<span class="o">]</span>
+pip install mkdocs-spellcheck<span class="o">[</span>codespell<span class="o">]</span>
+pip install mkdocs-spellcheck<span class="o">[</span>symspellpy<span class="o">]</span>
+pip install mkdocs-spellcheck<span class="o">[</span>codespell,symspellpy<span class="o">]</span>
 </code></pre></div>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">¤</a></h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># mkdocs.yml</span><span class="w"></span>
 <span class="nt">plugins</span><span class="p">:</span><span class="w"></span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">search</span><span class="w"></span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">spellcheck</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">backends</span><span class="p">:</span><span class="w">  </span><span class="c1"># the backends you want to use</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">symspellpy</span><span class="w">  </span><span class="c1"># as strings</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">codespell</span><span class="p">:</span><span class="w">  </span><span class="c1"># or nested configs</span><span class="w"></span>
+<span class="w">        </span><span class="nt">dictionaries</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">clear</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">rare</span><span class="p p-Indicator">]</span><span class="w"></span>
+
 <span class="w">    </span><span class="c1"># known_words can also be a list of words</span><span class="w"></span>
 <span class="w">    </span><span class="nt">known_words</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">known_words.txt</span><span class="w"></span>
 
@@ -750,7 +860,23 @@
 <span class="w">    </span><span class="nt">skip_files</span><span class="p">:</span><span class="w"></span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">credits.md</span><span class="w"></span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">coverage.md</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1"># whether to only check in strict mode</span><span class="w"></span>
+<span class="w">    </span><span class="nt">strict_only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">yes</span><span class="w"></span>
 </code></pre></div>
+<p>By default, the <code>symspellpy</code> backend is used.</p>
+<h3 id="codespell"><code>codespell</code><a class="headerlink" href="#codespell" title="Permanent link">¤</a></h3>
+<p>The builtin dictionaries are:</p>
+<ul>
+<li><code>clear</code> for unambiguous errors</li>
+<li><code>rare</code> for rare (but valid) words that are likely to be errors</li>
+<li><code>informal</code> for making informal words more formal</li>
+<li><code>usage</code> for replacing phrasing with recommended terms</li>
+<li><code>code</code> for words from code and/or mathematics that are likely
+    to be typos in other contexts (such as <code>uint</code>)</li>
+<li><code>names</code> for valid proper names that might be typos</li>
+<li><code>en-GB_to_en-US</code> for corrections from <code>en-GB</code> to <code>en-US</code></li>
+</ul>
 
 
 
