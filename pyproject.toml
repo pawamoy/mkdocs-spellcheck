@@ -68,6 +68,7 @@ docs = [
     "markdown-callouts>=0.2",
     "markdown-exec>=0.5",
     "toml>=0.10",
+    "mkdocs-spellcheck[all]",
 ]
 format = [
     "autoflake>=1.4",
@@ -101,6 +102,7 @@ tests = [
     "pytest-cov>=3.0",
     "pytest-randomly>=3.10",
     "pytest-xdist>=2.4",
+    "mkdocs-spellcheck[all]",
 ]
 typing = [
     "mypy>=0.910",
