@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "A spell checker plugin for MkDocs.",
+  "oneOf": [
+    {
+      "markdownDescription": "https://pawamoy.github.io/mkdocs-spellcheck",
+      "enum": [
+        "spellcheck"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "spellcheck": {
+          "markdownDescription": "https://pawamoy.github.io/mkdocs-spellcheck",
+          "type": "object",
+          "properties": {
+            "strict_only": {
+              "title": "Whether to only check in strict mode.",
+              "type": "boolean",
+              "default": false
+            },
+            "backends": {
+              "title": "Backends to enable for spell checking.",
+              "type": "array",
+              "items": {
+                "oneOf": [
+                  {
+                    "enum": ["symspellpy", "codespell"]
+                  },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "symspellpy": {
+                        "type": "object"
+                      },
+                      "codespell": {
+                        "type": "object",
+                        "properties": {
+                          "dictionaries": {
+                            "title": "Codespell dictionaries to use.",
+                            "type": "array",
+                            "items": {
+                              "enum": ["clear", "rare", "informal", "usage", "code", "names", "en-GB_to_en-US"]
+                            }
+                          }
+                        }   
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                ]
+              },
+              "default": ["symspellpy"]
+            },
+            "known_words": {
+              "title": "Words to exclude, or path to a file.",
+              "oneOf": [
+                {
+                  "type": "string",
+                  "format": "path"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              ],
+              "default": []
+            },
+            "skip_files": {
+              "title": "Filenames of MkDocs source files (Markdown pages) to skip.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            },
+            "min_length": {
+              "title": "Minimum length of words to check.",
+              "type": "integer",
+              "default": 2
+            },
+            "max_capital": {
+              "title": "Maximum number of capitals in words to check.",
+              "type": "integer",
+              "default": 1
+            },
+            "ignore_code": {
+              "title": "Whether to ignore words in HTML code tags.",
+              "type": "boolean",
+              "default": true
+            },
+            "allow_unicode": {
+              "title": "Whether to allow unicode or normalize to ASCII.",
+              "type": "boolean",
+              "default": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}
