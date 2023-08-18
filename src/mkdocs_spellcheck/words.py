@@ -42,7 +42,7 @@ def _strip_tags(html, ignore_code):
     return stripper.get_data()
 
 
-not_letters_nor_spaces = re.compile(r"[^\w\s-]")
+not_letters_nor_spaces = re.compile(r"[^\w\s-]|(?:\B\'|\'\B|\B\'\B)")
 dashes_or_spaces = re.compile(r"[-\s]+")
 
 
