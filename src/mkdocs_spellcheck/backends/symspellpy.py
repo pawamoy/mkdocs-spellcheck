@@ -3,13 +3,15 @@
 from __future__ import annotations
 
 from importlib import resources
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-from mkdocs.structure.pages import Page
 from symspellpy import SymSpell, Verbosity
 
 from mkdocs_spellcheck.backends import Backend
 from mkdocs_spellcheck.loggers import get_logger
+
+if TYPE_CHECKING:
+    from mkdocs.structure.pages import Page
 
 logger = get_logger(__name__)
 
@@ -17,7 +19,7 @@ logger = get_logger(__name__)
 class SymspellpyBackend(Backend):
     """Backend for the `symspellpy` library."""
 
-    def __init__(self, config: dict[str, Any], known_words: set[str] | None = None) -> None:
+    def __init__(self, config: dict[str, Any], known_words: set[str] | None = None) -> None:  # noqa: ARG002
         """Initialize the `symspellpy` backend.
 
         This backend needs to load dictionaries provided

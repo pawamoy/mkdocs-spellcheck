@@ -1,12 +1,14 @@
 """Tests for the `cli` module."""
 
+from __future__ import annotations
+
 import pytest
 
 from mkdocs_spellcheck.words import get_words
 
 
 @pytest.mark.parametrize("tag", ["p", "em", "div", "article"])
-def test_remove_tags(tag: str):
+def test_remove_tags(tag: str) -> None:
     """Assert tags are removed from HTML text.
 
     Parameters:
@@ -17,7 +19,7 @@ def test_remove_tags(tag: str):
     assert tag not in words
 
 
-def test_remove_single_tags():
+def test_remove_single_tags() -> None:
     """Assert single tags like `br` are removed from HTML text."""
     html = "Some text.<br><br/><br /><img /></br>"
     words = get_words(html, min_length=1)
@@ -33,7 +35,7 @@ def test_remove_single_tags():
         ("hello", {"world"}, ["hello"]),
     ],
 )
-def test_ignore_known_words(text, known_words, expected):
+def test_ignore_known_words(text: str, known_words: set[str], expected: list[str]) -> None:
     """Assert known words are correctly removed.
 
     Parameters:
@@ -54,7 +56,7 @@ def test_ignore_known_words(text, known_words, expected):
         ("a bb ccc", 4, []),
     ],
 )
-def test_ignore_too_short_words(text, min_length, expected):
+def test_ignore_too_short_words(text: str, min_length: int, expected: list[str]) -> None:
     """Assert known words are correctly removed.
 
     Parameters:
@@ -72,7 +74,7 @@ def test_ignore_too_short_words(text, min_length, expected):
         ("Hello <code>world!<code>", False, ["hello", "world"]),
     ],
 )
-def test_ignore_text_in_code_tags(text, ignore_code, expected):
+def test_ignore_text_in_code_tags(text: str, ignore_code: bool, expected: list[str]) -> None:
     """Assert known words are correctly removed.
 
     Parameters:
@@ -90,7 +92,7 @@ def test_ignore_text_in_code_tags(text, ignore_code, expected):
         ("Hello world! ハローワールド!", False, ["hello", "world"]),
     ],
 )
-def test_allow_unicode_characters(text, allow_unicode, expected):
+def test_allow_unicode_characters(text: str, allow_unicode: bool, expected: list[str]) -> None:
     """Assert known words are correctly removed.
 
     Parameters:
@@ -101,13 +103,13 @@ def test_allow_unicode_characters(text, allow_unicode, expected):
     assert get_words(text, allow_unicode=allow_unicode) == expected
 
 
-def test_prevent_words_concatenation():
+def test_prevent_words_concatenation() -> None:
     """Assert words are not concatenated when removing HTML tags."""
     html = "<p>Hello</p><p>world!</p>"
     assert get_words(html) == ["hello", "world"]
 
 
-def test_reset_after_code_endtag():
+def test_reset_after_code_endtag() -> None:
     """Assert the HTML stripper correctly resets its state after finding a `</code>` end tag."""
     html = "<p>Some</p><code>code</code><p>snippet</p>"
     assert "snippet" in get_words(html, ignore_code=True)

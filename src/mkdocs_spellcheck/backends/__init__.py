@@ -3,9 +3,10 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-from mkdocs.structure.pages import Page
+if TYPE_CHECKING:
+    from mkdocs.structure.pages import Page
 
 
 class Backend(ABC):

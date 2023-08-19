@@ -10,7 +10,7 @@ from io import StringIO
 
 
 class _MLStripper(HTMLParser):
-    def __init__(self, ignore_code=True):
+    def __init__(self, ignore_code: bool = True) -> None:  # noqa: FBT001,FBT002
         super().__init__()
         self.reset()
         self.strict = False
@@ -19,24 +19,24 @@ class _MLStripper(HTMLParser):
         self.ignore_code = ignore_code
         self.in_code_tag = False
 
-    def handle_starttag(self, tag, attrs):
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:  # noqa: ARG002
         if tag == "code":
             self.in_code_tag = True
         self.text.write(" ")
 
-    def handle_endtag(self, tag):
+    def handle_endtag(self, tag: str) -> None:
         if tag == "code":
             self.in_code_tag = False
 
-    def handle_data(self, data):
+    def handle_data(self, data: str) -> None:
         if not (self.ignore_code and self.in_code_tag):
             self.text.write(data)
 
-    def get_data(self):
+    def get_data(self) -> str:
         return self.text.getvalue()
 
 
-def _strip_tags(html, ignore_code):
+def _strip_tags(html: str, ignore_code: bool) -> str:  # noqa: FBT001
     stripper = _MLStripper(ignore_code)
     stripper.feed(html)
     return stripper.get_data()
@@ -46,7 +46,7 @@ not_letters_nor_spaces = re.compile(r"(?:(\B\'|\'\B|\B\'\B|\'s)|[^\w\s\'-])")
 dashes_or_spaces = re.compile(r"[-\s]+")
 
 
-def _normalize(value, allow_unicode=False):
+def _normalize(value: str, allow_unicode: bool = False) -> str:  # noqa: FBT001,FBT002
     value = str(value)
     if allow_unicode:
         value = unicodedata.normalize("NFKC", value)
@@ -56,7 +56,7 @@ def _normalize(value, allow_unicode=False):
     return dashes_or_spaces.sub("-", value).strip("-_")
 
 
-def _keep_word(word, min_length, max_capital):
+def _keep_word(word: str, min_length: int, max_capital: int) -> bool:
     if len(word) < min_length:
         return False
     capitals = 0

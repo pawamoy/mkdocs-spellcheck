@@ -1,5 +1,4 @@
-"""
-MkDocs SpellCheck package.
+"""MkDocs SpellCheck package.
 
 A spell checker plugin for MkDocs.
 """
@@ -7,17 +6,19 @@ A spell checker plugin for MkDocs.
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-from mkdocs.config import Config
 from mkdocs.config.config_options import Type as MkType
 from mkdocs.plugins import BasePlugin
-from mkdocs.structure.pages import Page
-from symspellpy import SymSpell
 
 from mkdocs_spellcheck.backends import codespell, symspellpy
 from mkdocs_spellcheck.loggers import get_logger
 from mkdocs_spellcheck.words import get_words
+
+if TYPE_CHECKING:
+    from mkdocs.config.defaults import MkDocsConfig
+    from mkdocs.structure.pages import Page
+    from symspellpy import SymSpell
 
 logger = get_logger(__name__)
 
@@ -56,14 +57,13 @@ class SpellCheckPlugin(BasePlugin):
         self.spell: SymSpell = None
         super().__init__()
 
-    def on_config(self, config: Config, **kwargs: Any) -> Config:
+    def on_config(self, config: MkDocsConfig) -> MkDocsConfig | None:
         """Load words to ignore.
 
         Hook for the [`on_config` event](https://www.mkdocs.org/user-guide/plugins/#on_config).
 
         Arguments:
             config: The MkDocs config object.
-            **kwargs: Additional arguments passed by MkDocs.
 
         Returns:
             The modified config.
@@ -100,7 +100,7 @@ class SpellCheckPlugin(BasePlugin):
 
         return config
 
-    def on_page_content(self, html: str, page: Page, **kwargs: Any) -> None:
+    def on_page_content(self, html: str, page: Page, **kwargs: Any) -> None:  # noqa: ARG002
         """Spell check everything.
 
         Hook for the [`on_page_content` event](https://www.mkdocs.org/user-guide/plugins/#on_page_content).

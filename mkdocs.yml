@@ -113,10 +113,10 @@ plugins:
         options:
           docstring_options:
             ignore_init_summary: true
-          docstring_section_style: list
+          docstring_section_style: table
           heading_level: 1
           merge_init_into_class: true
-          separate_signature: true
+          separate_signature: false
           show_root_heading: true
           show_root_full_path: false
           show_signature_annotations: true

@@ -4,14 +4,12 @@ from __future__ import annotations
 
 import os
 import sys
+from importlib.metadata import version as pkgversion
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
 from duty import duty
 from duty.callables import black, blacken_docs, coverage, lazy, mkdocs, mypy, pytest, ruff, safety
-
-from importlib.metadata import version as pkgversion
-
 
 if TYPE_CHECKING:
     from duty.context import Context

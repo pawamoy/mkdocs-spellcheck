@@ -3,9 +3,9 @@
 from __future__ import annotations
 
 import os
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-from codespell_lib._codespell import (  # noqa: WPS436,WPS450
+from codespell_lib._codespell import (
     Misspelling,
     _builtin_default,
     _builtin_dictionaries,
@@ -13,10 +13,12 @@ from codespell_lib._codespell import (  # noqa: WPS436,WPS450
     build_dict,
     fix_case,
 )
-from mkdocs.structure.pages import Page
 
 from mkdocs_spellcheck.backends import Backend
 from mkdocs_spellcheck.loggers import get_logger
+
+if TYPE_CHECKING:
+    from mkdocs.structure.pages import Page
 
 logger = get_logger(__name__)
 
@@ -43,7 +45,7 @@ class CodespellBackend(Backend):
                 if builtin[0] == dictionary:
                     use_dictionaries.append(os.path.join(_data_root, f"dictionary{builtin[2]}.txt"))
         self.misspellings: dict[str, Misspelling] = {}
-        for dictionary in use_dictionaries:  # noqa: WPS440
+        for dictionary in use_dictionaries:
             build_dict(dictionary, self.misspellings, known_words)
 
     def check(self, page: Page, word: str) -> None:  # noqa: D102

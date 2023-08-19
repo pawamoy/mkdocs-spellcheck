@@ -115,7 +115,7 @@ Related to PR namespace/other-project#15: https://github.com/namespace/other-pro
 These "trailers" must appear at the end of the body,
 without any blank lines between them. The trailer title
 can contain any character except colons `:`.
-We expect a full URI for each trailer, not just GitHub autolinks
+We expect a full URI for each trailer, not just GitHub auto-links
 (for example, full GitHub URLs for commits and issues,
 not the hash or the #issue-number).
 
