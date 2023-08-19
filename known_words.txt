@@ -18,3 +18,10 @@ config
 backend
 backends
 mkdocs
+flavored
+socio
+www
+https
+html
+faq
+code_of_conduct
