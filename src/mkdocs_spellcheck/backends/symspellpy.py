@@ -8,12 +8,12 @@ from typing import TYPE_CHECKING, Any
 from symspellpy import SymSpell, Verbosity
 
 from mkdocs_spellcheck.backends import Backend
-from mkdocs_spellcheck.loggers import get_logger
+from mkdocs_spellcheck.loggers import get_plugin_logger
 
 if TYPE_CHECKING:
     from mkdocs.structure.pages import Page
 
-logger = get_logger(__name__)
+logger = get_plugin_logger(__name__)
 
 
 class SymspellpyBackend(Backend):

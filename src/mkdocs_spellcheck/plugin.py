@@ -12,7 +12,7 @@ from mkdocs.config.config_options import Type as MkType
 from mkdocs.plugins import BasePlugin
 
 from mkdocs_spellcheck.backends import codespell, symspellpy
-from mkdocs_spellcheck.loggers import get_logger
+from mkdocs_spellcheck.loggers import get_plugin_logger
 from mkdocs_spellcheck.words import get_words
 
 if TYPE_CHECKING:
@@ -20,7 +20,7 @@ if TYPE_CHECKING:
     from mkdocs.structure.pages import Page
     from symspellpy import SymSpell
 
-logger = get_logger(__name__)
+logger = get_plugin_logger(__name__)
 
 
 backends_map: dict[str, Any] = {

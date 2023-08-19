@@ -15,12 +15,12 @@ from codespell_lib._codespell import (
 )
 
 from mkdocs_spellcheck.backends import Backend
-from mkdocs_spellcheck.loggers import get_logger
+from mkdocs_spellcheck.loggers import get_plugin_logger
 
 if TYPE_CHECKING:
     from mkdocs.structure.pages import Page
 
-logger = get_logger(__name__)
+logger = get_plugin_logger(__name__)
 
 DEFAULT_DICTS = _builtin_default.split(",")
 

@@ -3,46 +3,19 @@
 from __future__ import annotations
 
 import logging
-from typing import Any
-
-from mkdocs.utils import warning_filter
+from typing import Any, MutableMapping
 
 
-class LoggerAdapter(logging.LoggerAdapter):
-    """A logger adapter to prefix messages."""
-
-    def __init__(self, prefix: str, logger: logging.Logger):
-        """Initialize the object.
-
-        Arguments:
-            prefix: The string to insert in front of every message.
-            logger: The logger instance.
-        """
+# TODO: remove once support for MkDocs <1.5 is dropped (use built-in)
+class PrefixedLogger(logging.LoggerAdapter):  # noqa: D101
+    def __init__(self, prefix: str, logger: logging.Logger) -> None:  # noqa: D107
         super().__init__(logger, {})
         self.prefix = prefix
 
-    def process(self, msg: str, kwargs: Any) -> tuple[str, Any]:
-        """Process the message.
-
-        Arguments:
-            msg: The message:
-            kwargs: Remaining arguments.
-
-        Returns:
-            The processed message.
-        """
+    def process(self, msg: str, kwargs: MutableMapping[str, Any]) -> tuple[str, Any]:  # noqa: D102
         return f"{self.prefix}: {msg}", kwargs
 
 
-def get_logger(name: str) -> LoggerAdapter:
-    """Return a pre-configured logger.
-
-    Arguments:
-        name: The name to use with `logging.getLogger`.
-
-    Returns:
-        A logger configured to work well in MkDocs.
-    """
+def get_plugin_logger(name: str) -> PrefixedLogger:  # noqa: D103
     logger = logging.getLogger(f"mkdocs.plugins.{name}")
-    logger.addFilter(warning_filter)
-    return LoggerAdapter(name.split(".", 1)[0], logger)
+    return PrefixedLogger(name.split(".", 1)[0], logger)
