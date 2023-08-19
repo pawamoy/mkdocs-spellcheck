@@ -5,6 +5,19 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.0.1](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/1.0.1) - 2023-08-19
+
+<small>[Compare with 1.0.0](https://github.com/pawamoy/mkdocs-spellcheck/compare/1.0.0...1.0.1)</small>
+
+### Bug Fixes
+
+- Remove `'s` from possessive nouns for spellcheck ([1f11985](https://github.com/pawamoy/mkdocs-spellcheck/commit/1f11985532e9fda547ac25a1f6b57a77bdeba46c) by Stu Franks). [PR #16](https://github.com/pawamoy/mkdocs-spellcheck/pull/16)
+- Retain single quotes that are part of words ([8dd8206](https://github.com/pawamoy/mkdocs-spellcheck/commit/8dd8206eaccc709463873eef768fde45b360be26) by Stu Franks). [PR #16](https://github.com/pawamoy/mkdocs-spellcheck/pull/16)
+
+### Code Refactoring
+
+- Stop using deprecated warning filter ([ae3a584](https://github.com/pawamoy/mkdocs-spellcheck/commit/ae3a584229523087c21f77a6a74e14986d5fc8be) by Timothée Mazzucotelli).
+
 ## [1.0.0](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/1.0.0) - 2022-11-24
 
 <small>[Compare with 0.2.2](https://github.com/pawamoy/mkdocs-spellcheck/compare/0.2.2...1.0.0)</small>
