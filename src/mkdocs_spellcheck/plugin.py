@@ -10,23 +10,43 @@ from typing import TYPE_CHECKING, Any
 
 from mkdocs.config.config_options import Type as MkType
 from mkdocs.plugins import BasePlugin
+from mkdocs.structure.pages import Page
 
-from mkdocs_spellcheck.backends import codespell, symspellpy
 from mkdocs_spellcheck.loggers import get_plugin_logger
 from mkdocs_spellcheck.words import get_words
 
 if TYPE_CHECKING:
     from mkdocs.config.defaults import MkDocsConfig
     from mkdocs.structure.pages import Page
-    from symspellpy import SymSpell
+
+    from mkdocs_spellcheck.backends import Backend
 
 logger = get_plugin_logger(__name__)
 
 
-backends_map: dict[str, Any] = {
-    "symspellpy": symspellpy.SymspellpyBackend,
-    "codespell": codespell.CodespellBackend,
-}
+def load_backend(name: str) -> Backend:
+    """Load the specified backend.
+
+    This function imports the specified backend and returns its class.
+    It is important not to import the backends at the top level, as
+    they may not be installed.
+
+    Arguments:
+        name: The name of the backend to load.
+
+    Returns:
+        The backend class.
+    """
+    if name == "symspellpy":
+        from mkdocs_spellcheck.backends import symspellpy
+
+        return symspellpy.SymspellpyBackend
+    elif name == "codespell":
+        from mkdocs_spellcheck.backends import codespell
+
+        return codespell.CodespellBackend
+    else:
+        raise ValueError(f"Unknown backend: {name}")
 
 
 class SpellCheckPlugin(BasePlugin):
@@ -54,7 +74,6 @@ class SpellCheckPlugin(BasePlugin):
 
     def __init__(self) -> None:  # noqa: D107
         self.known_words: set[str] = set()
-        self.spell: SymSpell = None
         super().__init__()
 
     def on_config(self, config: MkDocsConfig) -> MkDocsConfig | None:
@@ -93,7 +112,7 @@ class SpellCheckPlugin(BasePlugin):
                 backend_config = {}
             else:
                 backend_name, backend_config = next(iter(backend_conf.items()))
-            self.backends[backend_name] = backends_map[backend_name](
+            self.backends[backend_name] = load_backend(backend_name)(
                 known_words=self.known_words,
                 config=backend_config,
             )
