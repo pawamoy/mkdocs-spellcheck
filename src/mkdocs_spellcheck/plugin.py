@@ -10,7 +10,6 @@ from typing import TYPE_CHECKING, Any
 
 from mkdocs.config.config_options import Type as MkType
 from mkdocs.plugins import BasePlugin
-from mkdocs.structure.pages import Page
 
 from mkdocs_spellcheck.loggers import get_plugin_logger
 from mkdocs_spellcheck.words import get_words
@@ -24,7 +23,7 @@ if TYPE_CHECKING:
 logger = get_plugin_logger(__name__)
 
 
-def load_backend(name: str) -> Backend:
+def load_backend(name: str) -> type[Backend]:
     """Load the specified backend.
 
     This function imports the specified backend and returns its class.
@@ -41,12 +40,13 @@ def load_backend(name: str) -> Backend:
         from mkdocs_spellcheck.backends import symspellpy
 
         return symspellpy.SymspellpyBackend
-    elif name == "codespell":
+
+    if name == "codespell":
         from mkdocs_spellcheck.backends import codespell
 
         return codespell.CodespellBackend
-    else:
-        raise ValueError(f"Unknown backend: {name}")
+
+    raise ValueError(f"Unknown backend: {name}")
 
 
 class SpellCheckPlugin(BasePlugin):
