@@ -114,7 +114,7 @@ plugins:
         options:
           docstring_options:
             ignore_init_summary: true
-          docstring_section_style: list
+          docstring_section_style: table
           filters: ["!^_"]
           heading_level: 1
           inherited_members: true
