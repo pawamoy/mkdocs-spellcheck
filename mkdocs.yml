@@ -110,11 +110,14 @@ plugins:
         import:
         - https://docs.python.org/3/objects.inv
         - https://www.mkdocs.org/objects.inv
+        paths: [src]
         options:
           docstring_options:
             ignore_init_summary: true
-          docstring_section_style: table
+          docstring_section_style: list
+          filters: ["!^_"]
           heading_level: 1
+          inherited_members: true
           merge_init_into_class: true
           separate_signature: false
           show_root_heading: true
@@ -123,6 +126,7 @@ plugins:
           show_symbol_type_heading: true
           show_symbol_type_toc: true
           signature_crossrefs: true
+          summary: true
 - spellcheck:
     strict_only: yes
     backends:
