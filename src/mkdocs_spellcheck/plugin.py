@@ -99,9 +99,7 @@ class SpellCheckPlugin(BasePlugin):
 
         known_words = self.config["known_words"]
         if isinstance(known_words, str):
-            self.known_words |= set(
-                Path(config["docs_dir"], known_words).read_text().splitlines()
-            )
+            self.known_words |= set(Path(config["docs_dir"], known_words).read_text().splitlines())
         else:
             self.known_words |= set(known_words)
 
