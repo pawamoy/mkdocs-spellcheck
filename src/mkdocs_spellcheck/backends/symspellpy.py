@@ -30,7 +30,8 @@ class SymspellpyBackend(Backend):
             known_words: Globally known words.
         """
         self.spell = SymSpell()
-        with resources.path("symspellpy", "frequency_dictionary_en_82_765.txt") as dictionary_path:
+        dictionary_res = resources.files("symspellpy").joinpath("frequency_dictionary_en_82_765.txt")
+        with resources.as_file(dictionary_res) as dictionary_path:
             self.spell.load_dictionary(dictionary_path, 0, 1)
 
     def check(self, page: Page, word: str) -> None:  # noqa: D102
