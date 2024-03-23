@@ -33,7 +33,7 @@ dependencies = []
 [project.optional-dependencies]
 all = ["mkdocs-spellcheck[codespell,symspellpy]"]
 codespell = ["codespell>=2.2.2"]
-symspellpy = ["symspellpy>=6.7.6"]
+symspellpy = ["symspellpy>=6.7.6", "importlib-resources>=6.4; python_version < '3.9'"]
 
 [project.urls]
 Homepage = "https://pawamoy.github.io/mkdocs-spellcheck"

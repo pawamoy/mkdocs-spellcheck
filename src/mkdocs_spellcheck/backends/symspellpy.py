@@ -2,13 +2,18 @@
 
 from __future__ import annotations
 
-from importlib import resources
+import sys
 from typing import TYPE_CHECKING, Any
 
 from symspellpy import SymSpell, Verbosity
 
 from mkdocs_spellcheck.backends import Backend
 from mkdocs_spellcheck.loggers import get_plugin_logger
+
+if sys.version_info < (3, 9):
+    import importlib_resources as resources
+else:
+    from importlib import resources
 
 if TYPE_CHECKING:
     from mkdocs.structure.pages import Page
@@ -30,7 +35,8 @@ class SymspellpyBackend(Backend):
             known_words: Globally known words.
         """
         self.spell = SymSpell()
-        with resources.path("symspellpy", "frequency_dictionary_en_82_765.txt") as dictionary_path:
+        dictionary_res = resources.files("symspellpy").joinpath("frequency_dictionary_en_82_765.txt")
+        with resources.as_file(dictionary_res) as dictionary_path:
             self.spell.load_dictionary(dictionary_path, 0, 1)
 
     def check(self, page: Page, word: str) -> None:  # noqa: D102
