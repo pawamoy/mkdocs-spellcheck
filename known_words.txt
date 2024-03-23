@@ -25,3 +25,8 @@ https
 html
 faq
 code_of_conduct
+dataclass
+ahrens
+dev
+fr
+uv

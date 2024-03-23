@@ -2,72 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://pawamoy.github.io/mkdocs-spellcheck/</loc>
-         <lastmod>2023-08-19</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pawamoy.github.io/mkdocs-spellcheck/changelog/</loc>
-         <lastmod>2023-08-19</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pawamoy.github.io/mkdocs-spellcheck/code_of_conduct/</loc>
-         <lastmod>2023-08-19</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pawamoy.github.io/mkdocs-spellcheck/contributing/</loc>
-         <lastmod>2023-08-19</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pawamoy.github.io/mkdocs-spellcheck/credits/</loc>
-         <lastmod>2023-08-19</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pawamoy.github.io/mkdocs-spellcheck/license/</loc>
-         <lastmod>2023-08-19</lastmod>
+         <lastmod>2024-03-23</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pawamoy.github.io/mkdocs-spellcheck/reference/SUMMARY/</loc>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pawamoy.github.io/mkdocs-spellcheck/reference/mkdocs_spellcheck/</loc>
-         <lastmod>2023-08-19</lastmod>
+         <lastmod>2024-03-23</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://pawamoy.github.io/mkdocs-spellcheck/reference/mkdocs_spellcheck/debug/</loc>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pawamoy.github.io/mkdocs-spellcheck/reference/mkdocs_spellcheck/loggers/</loc>
-         <lastmod>2023-08-19</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pawamoy.github.io/mkdocs-spellcheck/reference/mkdocs_spellcheck/plugin/</loc>
-         <lastmod>2023-08-19</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pawamoy.github.io/mkdocs-spellcheck/reference/mkdocs_spellcheck/words/</loc>
-         <lastmod>2023-08-19</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pawamoy.github.io/mkdocs-spellcheck/reference/mkdocs_spellcheck/backends/</loc>
-         <lastmod>2023-08-19</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pawamoy.github.io/mkdocs-spellcheck/reference/mkdocs_spellcheck/backends/codespell/</loc>
-         <lastmod>2023-08-19</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pawamoy.github.io/mkdocs-spellcheck/reference/mkdocs_spellcheck/backends/symspellpy/</loc>
-         <lastmod>2023-08-19</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://pawamoy.github.io/mkdocs-spellcheck/coverage/</loc>
-         <lastmod>2023-08-19</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
