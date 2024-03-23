@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.0.3](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/1.0.3) - 2024-03-23
+
+<small>[Compare with 1.0.2](https://github.com/pawamoy/mkdocs-spellcheck/compare/1.0.2...1.0.3)</small>
+
+### Code Refactoring
+
+- Stop using deprecated API of `importlib.resources` ([0c96a56](https://github.com/pawamoy/mkdocs-spellcheck/commit/0c96a56b909fb8db8cc15bf98a2b84795987c3a8) by Stu Franks). [PR-19](https://github.com/pawamoy/mkdocs-spellcheck/pull/19), Co-authored-by: Timothée Mazzucotelli <dev@pawamoy.fr>
+
 ## [1.0.2](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/1.0.2) - 2023-09-05
 
 <small>[Compare with 1.0.1](https://github.com/pawamoy/mkdocs-spellcheck/compare/1.0.1...1.0.2)</small>
