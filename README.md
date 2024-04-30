@@ -59,6 +59,10 @@ plugins:
     - credits.md
     - coverage.md
 
+    # skip files matching Unix shell-style wildcards
+    skip_file_globs:
+    - reference/* 
+
     # whether to only check in strict mode
     strict_only: yes
 ```

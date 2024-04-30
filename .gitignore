@@ -5,6 +5,7 @@
 # python
 *.egg-info/
 *.py[cod]
+pdm.lock
 .venv/
 .venvs/
 /build/
