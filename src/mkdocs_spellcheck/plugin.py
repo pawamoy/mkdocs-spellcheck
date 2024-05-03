@@ -91,9 +91,7 @@ class SpellCheckPlugin(BasePlugin):
         """
         self.strict_only = self.config["strict_only"]
         self.backends_config = self.config["backends"]
-        # Convert the skip files into a set of Path objects to make it
-        # OS-agnostic and increase lookup efficiency
-        self.skip_files = {Path(x) for x in self.config["skip_files"]}
+        self.skip_files = self.config["skip_files"]
         self.skip_file_globs = self.config["skip_file_globs"]
         self.min_length = self.config["min_length"]
         self.max_capital = self.config["max_capital"]
@@ -135,7 +133,7 @@ class SpellCheckPlugin(BasePlugin):
             **kwargs: Additional arguments passed by MkDocs.
         """
         if self.run and not (
-            Path(page.file.src_path) in self.skip_files
+            page.file.src_path in self.skip_files
             or any(fnmatch.fnmatch(page.file.src_path, pattern) for pattern in self.skip_file_globs)
         ):
             words = get_words(
