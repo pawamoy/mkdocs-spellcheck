@@ -67,7 +67,6 @@ class SpellCheckPlugin(BasePlugin):
         ("backends", MkType(list, default=["symspellpy"])),
         ("known_words", MkType((str, list), default=[])),
         ("skip_files", MkType(list, default=[])),
-        ("skip_file_globs", MkType(list, default=[])),
         ("min_length", MkType(int, default=2)),
         ("max_capital", MkType(int, default=1)),
         ("ignore_code", MkType(bool, default=True)),
@@ -92,7 +91,6 @@ class SpellCheckPlugin(BasePlugin):
         self.strict_only = self.config["strict_only"]
         self.backends_config = self.config["backends"]
         self.skip_files = self.config["skip_files"]
-        self.skip_file_globs = self.config["skip_file_globs"]
         self.min_length = self.config["min_length"]
         self.max_capital = self.config["max_capital"]
         self.ignore_code = self.config["ignore_code"]
@@ -132,10 +130,7 @@ class SpellCheckPlugin(BasePlugin):
             page: The page instance.
             **kwargs: Additional arguments passed by MkDocs.
         """
-        if self.run and not (
-            page.file.src_path in self.skip_files
-            or any(fnmatch.fnmatch(page.file.src_path, pattern) for pattern in self.skip_file_globs)
-        ):
+        if self.run and not any(fnmatch.fnmatch(page.file.src_path, pattern) for pattern in self.skip_files):
             words = get_words(
                 html,
                 known_words=self.known_words,
