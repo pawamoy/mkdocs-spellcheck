@@ -5,6 +5,7 @@ A spell checker plugin for MkDocs.
 
 from __future__ import annotations
 
+import fnmatch
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
@@ -129,7 +130,7 @@ class SpellCheckPlugin(BasePlugin):
             page: The page instance.
             **kwargs: Additional arguments passed by MkDocs.
         """
-        if self.run and page.file.src_path not in self.skip_files:
+        if self.run and not any(fnmatch.fnmatch(page.file.src_path, pattern) for pattern in self.skip_files):
             words = get_words(
                 html,
                 known_words=self.known_words,

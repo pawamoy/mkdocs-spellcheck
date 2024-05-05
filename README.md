@@ -54,10 +54,11 @@ plugins:
     # keep unicode characters
     allow_unicode: no
 
-    # skip files entirely
+    # skip files entirely (supports Unix shell-style wildcards)
     skip_files:
     - credits.md
     - coverage.md
+    - reference/* 
 
     # whether to only check in strict mode
     strict_only: yes
