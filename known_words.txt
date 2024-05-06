@@ -30,3 +30,6 @@ ahrens
 dev
 fr
 uv
+codespell
+mkdocs_spellcheck
+symspellpy
