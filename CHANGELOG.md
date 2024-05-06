@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.1.0](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/1.1.0) - 2024-05-05
+
+<small>[Compare with 1.0.3](https://github.com/pawamoy/mkdocs-spellcheck/compare/1.0.3...1.1.0)</small>
+
+### Features
+
+- Support Unix filename pattern matching when skipping files ([2ae097d](https://github.com/pawamoy/mkdocs-spellcheck/commit/2ae097d24803bb24991e038b810139fed03471b3) by Nicholas Felt). [Issue-20](https://github.com/pawamoy/mkdocs-spellcheck/issues/20), [PR-23](https://github.com/pawamoy/mkdocs-spellcheck/pull/23)
+
 ## [1.0.3](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/1.0.3) - 2024-03-23
 
 <small>[Compare with 1.0.2](https://github.com/pawamoy/mkdocs-spellcheck/compare/1.0.2...1.0.3)</small>
