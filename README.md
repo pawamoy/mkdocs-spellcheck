@@ -66,6 +66,8 @@ plugins:
 
 By default, the `symspellpy` backend is used.
 
+Once your configuration is ready, just run `mkdocs build -s` to check the spelling inside your pages.
+
 ### `codespell`
 
 The builtin dictionaries are:
