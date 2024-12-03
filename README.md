@@ -21,10 +21,10 @@ To install all backends, use the `all` extra.
 Otherwise specify the name(s) of the backend(s) as extra.
 
 ```bash
-pip install mkdocs-spellcheck[all]
-pip install mkdocs-spellcheck[codespell]
-pip install mkdocs-spellcheck[symspellpy]
-pip install mkdocs-spellcheck[codespell,symspellpy]
+pip install 'mkdocs-spellcheck[all]'
+pip install 'mkdocs-spellcheck[codespell]'
+pip install 'mkdocs-spellcheck[symspellpy]'
+pip install 'mkdocs-spellcheck[codespell,symspellpy]'
 ```
 
 ## Usage
