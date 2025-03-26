@@ -33,3 +33,4 @@ uv
 codespell
 mkdocs_spellcheck
 symspellpy
+autolinks
