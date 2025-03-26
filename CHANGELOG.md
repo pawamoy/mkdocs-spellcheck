@@ -5,6 +5,23 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.1.1](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/1.1.1) - 2025-03-26
+
+<small>[Compare with 1.1.0](https://github.com/pawamoy/mkdocs-spellcheck/compare/1.1.0...1.1.1)</small>
+
+### Deprecations
+
+Importing from submodules is deprecated, import from the top-level `mkdocs_spellcheck` instead.
+
+### Bug Fixes
+
+- Replace underscores with dashes when normalizing ([3b0d498](https://github.com/pawamoy/mkdocs-spellcheck/commit/3b0d498ce9bb6aaed81309bd98d116da19b7d246) by Timothée Mazzucotelli). [Issue-27](https://github.com/pawamoy/mkdocs-spellcheck/issues/27)
+
+### Code Refactoring
+
+- Sync API/docs, emit deprecation warnings ([e0c647e](https://github.com/pawamoy/mkdocs-spellcheck/commit/e0c647eded873facb8457f8b236ce87698263941) by Timothée Mazzucotelli).
+- Move modules into internal folder ([9b09eae](https://github.com/pawamoy/mkdocs-spellcheck/commit/9b09eaefa5be921aa9ad2594f444635ef246c3cd) by Timothée Mazzucotelli).
+
 ## [1.1.0](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/1.1.0) - 2024-05-05
 
 <small>[Compare with 1.0.3](https://github.com/pawamoy/mkdocs-spellcheck/compare/1.0.3...1.1.0)</small>
