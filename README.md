@@ -1,9 +1,8 @@
 # MkDocs SpellCheck
 
 [![ci](https://github.com/pawamoy/mkdocs-spellcheck/workflows/ci/badge.svg)](https://github.com/pawamoy/mkdocs-spellcheck/actions?query=workflow%3Aci)
-[![documentation](https://img.shields.io/badge/docs-mkdocs%20material-blue.svg?style=flat)](https://pawamoy.github.io/mkdocs-spellcheck/)
+[![documentation](https://img.shields.io/badge/docs-mkdocs-708FCC.svg?style=flat)](https://pawamoy.github.io/mkdocs-spellcheck/)
 [![pypi version](https://img.shields.io/pypi/v/mkdocs-spellcheck.svg)](https://pypi.org/project/mkdocs-spellcheck/)
-[![gitpod](https://img.shields.io/badge/gitpod-workspace-blue.svg?style=flat)](https://gitpod.io/#https://github.com/pawamoy/mkdocs-spellcheck)
 [![gitter](https://badges.gitter.im/join%20chat.svg)](https://app.gitter.im/#/room/#mkdocs-spellcheck:gitter.im)
 
 A spell checker plugin for MkDocs.
@@ -17,8 +16,7 @@ These backends are:
 
 ## Installation
 
-To install all backends, use the `all` extra.
-Otherwise specify the name(s) of the backend(s) as extra.
+To install all backends, use the `all` extra. Otherwise specify the name(s) of the backend(s) as extra.
 
 ```bash
 pip install 'mkdocs-spellcheck[all]'
@@ -58,7 +56,7 @@ plugins:
     skip_files:
     - credits.md
     - coverage.md
-    - reference/* 
+    - reference/*
 
     # whether to only check in strict mode
     strict_only: yes

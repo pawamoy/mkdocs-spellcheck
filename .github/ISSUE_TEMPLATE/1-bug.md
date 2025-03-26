@@ -50,10 +50,10 @@ PASTE TRACEBACK HERE
      redacting sensitive information. -->
 
 ```bash
-python -m mkdocs_spellcheck.debug  # | xclip -selection clipboard
+python -m mkdocs_spellcheck._internal.debug  # | xclip -selection clipboard
 ```
 
-PASTE OUTPUT HERE
+PASTE MARKDOWN OUTPUT HERE
 
 ### Additional context
 <!-- Add any other relevant context about the problem here,
