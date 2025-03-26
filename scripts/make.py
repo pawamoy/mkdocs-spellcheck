@@ -41,9 +41,9 @@ def uv_install(venv: Path) -> None:
     """Install dependencies using uv."""
     with environ(UV_PROJECT_ENVIRONMENT=str(venv), PYO3_USE_ABI3_FORWARD_COMPATIBILITY="1"):
         if "CI" in os.environ:
-            shell("uv sync --no-editable")
+            shell("uv sync --all-extras --no-editable")
         else:
-            shell("uv sync")
+            shell("uv sync --all-extras")
 
 
 def setup() -> None:
