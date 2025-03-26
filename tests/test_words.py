@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from mkdocs_spellcheck.words import get_words
+from mkdocs_spellcheck import get_words
 
 
 @pytest.mark.parametrize("tag", ["p", "em", "div", "article"])

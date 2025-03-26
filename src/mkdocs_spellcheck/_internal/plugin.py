@@ -1,7 +1,5 @@
-"""MkDocs SpellCheck package.
-
-A spell checker plugin for MkDocs.
-"""
+# MkDocs SpellCheck package.
+# A spell checker plugin for MkDocs.
 
 from __future__ import annotations
 
@@ -9,10 +7,10 @@ from fnmatch import fnmatch
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
 
+from mkdocs.config.base import Config
 from mkdocs.config.config_options import Type as MkType
-from mkdocs.plugins import BasePlugin
+from mkdocs.plugins import BasePlugin, get_plugin_logger
 
-from mkdocs_spellcheck._internal.loggers import get_plugin_logger
 from mkdocs_spellcheck._internal.words import get_words
 
 if TYPE_CHECKING:
@@ -21,7 +19,7 @@ if TYPE_CHECKING:
 
     from mkdocs_spellcheck.backends import Backend
 
-logger = get_plugin_logger(__name__)
+_logger = get_plugin_logger(__name__)
 
 
 def load_backend(name: str) -> type[Backend]:
@@ -50,7 +48,20 @@ def load_backend(name: str) -> type[Backend]:
     raise ValueError(f"Unknown backend: {name}")
 
 
-class SpellCheckPlugin(BasePlugin):
+class _SpellCheckConfig(Config):
+    """Configuration options for the plugin."""
+
+    strict_only = MkType(bool, default=False)
+    backends = MkType(list, default=["symspellpy"])
+    known_words = MkType((str, list), default=[])
+    skip_files = MkType(list, default=[])
+    min_length = MkType(int, default=2)
+    max_capital = MkType(int, default=1)
+    ignore_code = MkType(bool, default=True)
+    allow_unicode = MkType(bool, default=False)
+
+
+class SpellCheckPlugin(BasePlugin[_SpellCheckConfig]):
     """A `mkdocs` plugin.
 
     This plugin defines the following event hooks:
@@ -62,19 +73,26 @@ class SpellCheckPlugin(BasePlugin):
     for more information about its plugin system.
     """
 
-    config_scheme: tuple[tuple[str, MkType], ...] = (
-        ("strict_only", MkType(bool, default=False)),
-        ("backends", MkType(list, default=["symspellpy"])),
-        ("known_words", MkType((str, list), default=[])),
-        ("skip_files", MkType(list, default=[])),
-        ("min_length", MkType(int, default=2)),
-        ("max_capital", MkType(int, default=1)),
-        ("ignore_code", MkType(bool, default=True)),
-        ("allow_unicode", MkType(bool, default=False)),
-    )
+    strict_only: bool
+    """Only run in strict mode."""
+    backends_config: list[str | dict[str, Any]]
+    """Backend configuration."""
+    skip_files: list[str]
+    """Files to skip."""
+    min_length: int
+    """Minimum word length."""
+    max_capital: int
+    """Maximum number of capital letters in a word to consider it."""
+    ignore_code: bool
+    """Ignore words in code blocks."""
+    allow_unicode: bool
+    """Keep unicode characters."""
+    run: bool
+    """Whether to run the plugin."""
 
     def __init__(self) -> None:
         self.known_words: set[str] = set()
+        """Words to ignore."""
         super().__init__()
 
     def on_config(self, config: MkDocsConfig) -> MkDocsConfig | None:
@@ -110,7 +128,7 @@ class SpellCheckPlugin(BasePlugin):
         for backend_conf in self.backends_config:
             if isinstance(backend_conf, str):
                 backend_name = backend_conf
-                backend_config = {}
+                backend_config: dict[str, Any] = {}
             else:
                 backend_name, backend_config = next(iter(backend_conf.items()))
             self.backends[backend_name] = load_backend(backend_name)(

@@ -30,7 +30,9 @@ classifiers = [
     "Topic :: Utilities",
     "Typing :: Typed",
 ]
-dependencies = []
+dependencies = [
+    "mkdocs>=1.5",
+]
 
 [project.optional-dependencies]
 all = ["mkdocs-spellcheck[codespell,symspellpy]"]

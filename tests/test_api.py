@@ -152,7 +152,13 @@ def test_inventory_matches_api(
     not_in_api = []
     public_api_paths = {obj.path for obj in public_objects}
     public_api_paths.add("mkdocs_spellcheck")
+    # YORE: Bump 2: Remove line.
+    ignore = ("mkdocs_spellcheck.backends", "mkdocs_spellcheck.plugin", "mkdocs_spellcheck.words")
     for item in inventory.values():
+        # YORE: Bump 2: Remove line.
+        if item.name.startswith(ignore):
+            # YORE: Bump 2: Remove line.
+            continue
         if (
             item.domain == "py"
             and "(" not in item.name

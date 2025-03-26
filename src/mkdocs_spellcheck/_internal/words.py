@@ -1,4 +1,4 @@
-"""This module contains a function to retrieve words from HTML text."""
+# This module contains a function to retrieve words from HTML text.
 
 from __future__ import annotations
 
@@ -42,8 +42,8 @@ def _strip_tags(html: str, ignore_code: bool) -> str:  # noqa: FBT001
     return stripper.get_data()
 
 
-not_letters_nor_spaces = re.compile(r"(?:(\B\'|\'\B|\B\'\B|\'s)|[^\w\s\'-])")
-dashes_or_spaces = re.compile(r"[-_\s]+")
+_not_letters_nor_spaces = re.compile(r"(?:(\B\'|\'\B|\B\'\B|\'s)|[^\w\s\'-])")
+_dashes_or_spaces = re.compile(r"[-_\s]+")
 
 
 def _normalize(value: str, allow_unicode: bool = False) -> str:  # noqa: FBT001,FBT002
@@ -52,8 +52,8 @@ def _normalize(value: str, allow_unicode: bool = False) -> str:  # noqa: FBT001,
         value = unicodedata.normalize("NFKC", value)
     else:
         value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
-    value = not_letters_nor_spaces.sub(" ", value)
-    return dashes_or_spaces.sub("-", value).strip("-_")
+    value = _not_letters_nor_spaces.sub(" ", value)
+    return _dashes_or_spaces.sub("-", value).strip("-_")
 
 
 def _keep_word(word: str, min_length: int, max_capital: int) -> bool:

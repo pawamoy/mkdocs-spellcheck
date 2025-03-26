@@ -1,4 +1,4 @@
-"""This module contains the different spell checking backends."""
+# This module contains the different spell checking backends.
 
 from __future__ import annotations
 

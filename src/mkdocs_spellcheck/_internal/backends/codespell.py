@@ -1,4 +1,4 @@
-"""Backend for the `codespell` tool."""
+# Backend for the `codespell` tool.
 
 from __future__ import annotations
 
@@ -13,16 +13,16 @@ from codespell_lib._codespell import (
     build_dict,
     fix_case,
 )
+from mkdocs.plugins import get_plugin_logger
 
 from mkdocs_spellcheck._internal.backends import Backend
-from mkdocs_spellcheck._internal.loggers import get_plugin_logger
 
 if TYPE_CHECKING:
     from mkdocs.structure.pages import Page
 
-logger = get_plugin_logger(__name__)
+_logger = get_plugin_logger(__name__)
 
-DEFAULT_DICTS = _builtin_default.split(",")
+_DEFAULT_DICTS = _builtin_default.split(",")
 
 
 class CodespellBackend(Backend):
@@ -40,16 +40,20 @@ class CodespellBackend(Backend):
         """
         known_words = known_words or set()
         use_dictionaries = []
-        for dictionary in config.get("dictionaries", DEFAULT_DICTS):
+        for dictionary in config.get("dictionaries", _DEFAULT_DICTS):
             for builtin in _builtin_dictionaries:
                 if builtin[0] == dictionary:
                     use_dictionaries.append(os.path.join(_data_root, f"dictionary{builtin[2]}.txt"))
+
         self.misspellings: dict[str, Misspelling] = {}
+        """A mapping of misspelled words to their corrections."""
+
         for dictionary in use_dictionaries:
             build_dict(dictionary, self.misspellings, known_words)
 
     def check(self, page: Page, word: str) -> None:
+        """Check a word against the `codespell` misspellings."""
         if word in self.misspellings:
             # reason = self.misspellings[word].reason
             fixword = fix_case(word, self.misspellings[word].data)
-            logger.warning(f"(codespell) {page.file.src_path}: Misspelled '{word}', did you mean '{fixword}'?")
+            _logger.warning(f"(codespell) {page.file.src_path}: Misspelled '{word}', did you mean '{fixword}'?")
