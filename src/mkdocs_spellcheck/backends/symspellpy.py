@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-import sys
+from importlib import resources
 from typing import TYPE_CHECKING, Any
 
 from symspellpy import SymSpell, Verbosity
@@ -10,13 +10,9 @@ from symspellpy import SymSpell, Verbosity
 from mkdocs_spellcheck.backends import Backend
 from mkdocs_spellcheck.loggers import get_plugin_logger
 
-if sys.version_info < (3, 9):
-    import importlib_resources as resources
-else:
-    from importlib import resources
-
 if TYPE_CHECKING:
     from mkdocs.structure.pages import Page
+
 
 logger = get_plugin_logger(__name__)
 

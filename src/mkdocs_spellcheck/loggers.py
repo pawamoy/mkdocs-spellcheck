@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import logging
-from typing import Any, MutableMapping
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from collections.abc import MutableMapping
 
 
 # TODO: remove once support for MkDocs <1.5 is dropped (use built-in)
