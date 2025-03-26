@@ -12,8 +12,8 @@ from typing import TYPE_CHECKING, Any
 from mkdocs.config.config_options import Type as MkType
 from mkdocs.plugins import BasePlugin
 
-from mkdocs_spellcheck.loggers import get_plugin_logger
-from mkdocs_spellcheck.words import get_words
+from mkdocs_spellcheck._internal.loggers import get_plugin_logger
+from mkdocs_spellcheck._internal.words import get_words
 
 if TYPE_CHECKING:
     from mkdocs.config.defaults import MkDocsConfig
@@ -38,12 +38,12 @@ def load_backend(name: str) -> type[Backend]:
         The backend class.
     """
     if name == "symspellpy":
-        from mkdocs_spellcheck.backends import symspellpy
+        from mkdocs_spellcheck._internal.backends import symspellpy
 
         return symspellpy.SymspellpyBackend
 
     if name == "codespell":
-        from mkdocs_spellcheck.backends import codespell
+        from mkdocs_spellcheck._internal.backends import codespell
 
         return codespell.CodespellBackend
 
@@ -73,7 +73,7 @@ class SpellCheckPlugin(BasePlugin):
         ("allow_unicode", MkType(bool, default=False)),
     )
 
-    def __init__(self) -> None:  # noqa: D107
+    def __init__(self) -> None:
         self.known_words: set[str] = set()
         super().__init__()
 

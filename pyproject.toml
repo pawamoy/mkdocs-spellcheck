@@ -48,7 +48,7 @@ Gitter = "https://gitter.im/mkdocs-spellcheck/community"
 Funding = "https://github.com/sponsors/pawamoy"
 
 [project.entry-points."mkdocs.plugins"]
-spellcheck = "mkdocs_spellcheck.plugin:SpellCheckPlugin"
+spellcheck = "mkdocs_spellcheck._internal.plugin:SpellCheckPlugin"
 
 [tool.pdm.version]
 source = "call"

@@ -14,8 +14,8 @@ from codespell_lib._codespell import (
     fix_case,
 )
 
-from mkdocs_spellcheck.backends import Backend
-from mkdocs_spellcheck.loggers import get_plugin_logger
+from mkdocs_spellcheck._internal.backends import Backend
+from mkdocs_spellcheck._internal.loggers import get_plugin_logger
 
 if TYPE_CHECKING:
     from mkdocs.structure.pages import Page
@@ -48,7 +48,7 @@ class CodespellBackend(Backend):
         for dictionary in use_dictionaries:
             build_dict(dictionary, self.misspellings, known_words)
 
-    def check(self, page: Page, word: str) -> None:  # noqa: D102
+    def check(self, page: Page, word: str) -> None:
         if word in self.misspellings:
             # reason = self.misspellings[word].reason
             fixword = fix_case(word, self.misspellings[word].data)
