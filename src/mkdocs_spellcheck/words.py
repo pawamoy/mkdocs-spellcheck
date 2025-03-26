@@ -43,7 +43,7 @@ def _strip_tags(html: str, ignore_code: bool) -> str:  # noqa: FBT001
 
 
 not_letters_nor_spaces = re.compile(r"(?:(\B\'|\'\B|\B\'\B|\'s)|[^\w\s\'-])")
-dashes_or_spaces = re.compile(r"[-\s]+")
+dashes_or_spaces = re.compile(r"[-_\s]+")
 
 
 def _normalize(value: str, allow_unicode: bool = False) -> str:  # noqa: FBT001,FBT002
