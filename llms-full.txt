@@ -1,0 +1,556 @@
+# MkDocs SpellCheck
+
+A spell checker plugin for MkDocs.
+
+This plugin can use different backends to check the spelling of words in your final HTML pages. These backends are:
+
+- [`codespell`](https://github.com/codespell-project/codespell)
+- [`symspellpy`](https://github.com/mammothb/symspellpy)
+
+## Installation
+
+To install all backends, use the `all` extra. Otherwise specify the name(s) of the backend(s) as extra.
+
+```
+pip install 'mkdocs-spellcheck[all]'
+pip install 'mkdocs-spellcheck[codespell]'
+pip install 'mkdocs-spellcheck[symspellpy]'
+pip install 'mkdocs-spellcheck[codespell,symspellpy]'
+
+```
+
+## Usage
+
+```
+# mkdocs.yml
+plugins:
+- search
+- spellcheck:
+    backends:  # the backends you want to use
+    - symspellpy  # as strings
+    - codespell:  # or nested configs
+        dictionaries: [clear, rare]
+
+    # known_words can also be a list of words
+    known_words: known_words.txt
+
+    # ignore words in <code> tags
+    ignore_code: yes
+
+    # minimum length of words to consider
+    min_length: 2
+
+    # maximum number of capital letters in a word
+    max_capital: 1
+
+    # keep unicode characters
+    allow_unicode: no
+
+    # skip files entirely (supports Unix shell-style wildcards)
+    skip_files:
+    - credits.md
+    - coverage.md
+    - reference/*
+
+    # whether to only check in strict mode
+    strict_only: yes
+
+```
+
+By default, the `symspellpy` backend is used.
+
+Once your configuration is ready, just run `mkdocs build -s` to check the spelling inside your pages.
+
+### `codespell`
+
+The builtin dictionaries are:
+
+- `clear` for unambiguous errors
+- `rare` for rare (but valid) words that are likely to be errors
+- `informal` for making informal words more formal
+- `usage` for replacing phrasing with recommended terms
+- `code` for words from code and/or mathematics that are likely to be typos in other contexts (such as `uint`)
+- `names` for valid proper names that might be typos
+- `en-GB_to_en-US` for corrections from `en-GB` to `en-US`
+
+# `mkdocs_spellcheck`
+
+MkDocs SpellCheck package.
+
+A spell checker plugin for MkDocs.
+
+Modules:
+
+| Name | Description | | --- | --- | | `backends` | Deprecated. Import directly from mkdocs_spellcheck instead. | | `plugin` | Deprecated. Import directly from mkdocs_spellcheck instead. | | `words` | Deprecated. Import directly from mkdocs_spellcheck instead. |
+
+Classes:
+
+| Name | Description | | --- | --- | | `Backend` | Abstract class for spelling backends. | | `CodespellBackend` | Backend for the codespell tool. | | `SpellCheckPlugin` | A mkdocs plugin. | | `SymspellpyBackend` | Backend for the symspellpy library. |
+
+Functions:
+
+| Name | Description | | --- | --- | | `get_words` | Get words in HTML text. | | `load_backend` | Load the specified backend. |
+
+## `Backend(config: dict[str, Any], known_words: set[str] | None = None)`
+
+Bases: `ABC`
+
+Abstract class for spelling backends.
+
+Parameters:
+
+| Name | Type | Description | Default | | --- | --- | --- | --- | | `config` | `dict[str, Any]` | User configuration from mkdocs.yml. | *required* | | `known_words` | `set[str] | None` | Globally known words. | `None` |
+
+Methods:
+
+| Name | Description | | --- | --- | | `check` | Check a word appearing in a page. |
+
+Source code in `src/mkdocs_spellcheck/_internal/backends/__init__.py`
+
+```
+@abstractmethod
+def __init__(self, config: dict[str, Any], known_words: set[str] | None = None) -> None:
+    """Initialize the backend.
+
+    Parameters:
+        config: User configuration from `mkdocs.yml`.
+        known_words: Globally known words.
+    """
+    raise NotImplementedError
+
+```
+
+### `check(page: Page, word: str) -> None`
+
+Check a word appearing in a page.
+
+Parameters:
+
+| Name | Type | Description | Default | | --- | --- | --- | --- | | `page` | `Page` | The MkDocs page the word appears in. | *required* | | `word` | `str` | The word to check. | *required* |
+
+Source code in `src/mkdocs_spellcheck/_internal/backends/__init__.py`
+
+```
+@abstractmethod
+def check(self, page: Page, word: str) -> None:
+    """Check a word appearing in a page.
+
+    Parameters:
+        page: The MkDocs page the word appears in.
+        word: The word to check.
+    """
+    raise NotImplementedError
+
+```
+
+## `CodespellBackend(config: dict[str, Any], known_words: set[str] | None = None)`
+
+Bases: `Backend`
+
+Backend for the `codespell` tool.
+
+This backend needs to build a list of misspellings based on dictionaries provided by `codespell` itself.
+
+Parameters:
+
+| Name | Type | Description | Default | | --- | --- | --- | --- | | `config` | `dict[str, Any]` | User configuration from mkdocs.yml. | *required* | | `known_words` | `set[str] | None` | Globally known words. | `None` |
+
+Methods:
+
+| Name | Description | | --- | --- | | `check` | Check a word against the codespell misspellings. |
+
+Attributes:
+
+| Name | Type | Description | | --- | --- | --- | | `misspellings` | `dict[str, Misspelling]` | A mapping of misspelled words to their corrections. |
+
+Source code in `src/mkdocs_spellcheck/_internal/backends/codespell.py`
+
+```
+def __init__(self, config: dict[str, Any], known_words: set[str] | None = None) -> None:
+    """Initialize the `codespell` backend.
+
+    This backend needs to build a list of misspellings based
+    on dictionaries provided by `codespell` itself.
+
+    Parameters:
+        config: User configuration from `mkdocs.yml`.
+        known_words: Globally known words.
+    """
+    known_words = known_words or set()
+    use_dictionaries = []
+    for dictionary in config.get("dictionaries", _DEFAULT_DICTS):
+        for builtin in _builtin_dictionaries:
+            if builtin[0] == dictionary:
+                use_dictionaries.append(os.path.join(_data_root, f"dictionary{builtin[2]}.txt"))
+
+    self.misspellings: dict[str, Misspelling] = {}
+    """A mapping of misspelled words to their corrections."""
+
+    for dictionary in use_dictionaries:
+        build_dict(dictionary, self.misspellings, known_words)
+
+```
+
+### `misspellings: dict[str, Misspelling] = {}`
+
+A mapping of misspelled words to their corrections.
+
+### `check(page: Page, word: str) -> None`
+
+Check a word against the `codespell` misspellings.
+
+Source code in `src/mkdocs_spellcheck/_internal/backends/codespell.py`
+
+```
+def check(self, page: Page, word: str) -> None:
+    """Check a word against the `codespell` misspellings."""
+    if word in self.misspellings:
+        # reason = self.misspellings[word].reason
+        fixword = fix_case(word, self.misspellings[word].data)
+        _logger.warning(f"(codespell) {page.file.src_path}: Misspelled '{word}', did you mean '{fixword}'?")
+
+```
+
+## `SpellCheckPlugin()`
+
+Bases: `BasePlugin[_SpellCheckConfig]`
+
+A `mkdocs` plugin.
+
+This plugin defines the following event hooks:
+
+- `on_config`
+- `on_page_content`
+
+Check the [Developing Plugins](https://www.mkdocs.org/user-guide/plugins/#developing-plugins) page of `mkdocs` for more information about its plugin system.
+
+Methods:
+
+| Name | Description | | --- | --- | | `on_config` | Load words to ignore. | | `on_page_content` | Spell check everything. |
+
+Attributes:
+
+| Name | Type | Description | | --- | --- | --- | | `allow_unicode` | `bool` | Keep unicode characters. | | `backends_config` | `list[str | dict[str, Any]]` | Backend configuration. | | `ignore_code` | `bool` | Ignore words in code blocks. | | `known_words` | `set[str]` | Words to ignore. | | `max_capital` | `int` | Maximum number of capital letters in a word to consider it. | | `min_length` | `int` | Minimum word length. | | `run` | `bool` | Whether to run the plugin. | | `skip_files` | `list[str]` | Files to skip. | | `strict_only` | `bool` | Only run in strict mode. |
+
+Source code in `src/mkdocs_spellcheck/_internal/plugin.py`
+
+```
+def __init__(self) -> None:
+    self.known_words: set[str] = set()
+    """Words to ignore."""
+    super().__init__()
+
+```
+
+### `allow_unicode: bool`
+
+Keep unicode characters.
+
+### `backends_config: list[str | dict[str, Any]]`
+
+Backend configuration.
+
+### `ignore_code: bool`
+
+Ignore words in code blocks.
+
+### `known_words: set[str] = set()`
+
+Words to ignore.
+
+### `max_capital: int`
+
+Maximum number of capital letters in a word to consider it.
+
+### `min_length: int`
+
+Minimum word length.
+
+### `run: bool`
+
+Whether to run the plugin.
+
+### `skip_files: list[str]`
+
+Files to skip.
+
+### `strict_only: bool`
+
+Only run in strict mode.
+
+### `on_config(config: MkDocsConfig) -> MkDocsConfig | None`
+
+Load words to ignore.
+
+Hook for the [`on_config` event](https://www.mkdocs.org/user-guide/plugins/#on_config).
+
+Parameters:
+
+| Name | Type | Description | Default | | --- | --- | --- | --- | | `config` | `MkDocsConfig` | The MkDocs config object. | *required* |
+
+Returns:
+
+| Type | Description | | --- | --- | | `MkDocsConfig | None` | The modified config. |
+
+Source code in `src/mkdocs_spellcheck/_internal/plugin.py`
+
+```
+def on_config(self, config: MkDocsConfig) -> MkDocsConfig | None:
+    """Load words to ignore.
+
+    Hook for the [`on_config` event](https://www.mkdocs.org/user-guide/plugins/#on_config).
+
+    Arguments:
+        config: The MkDocs config object.
+
+    Returns:
+        The modified config.
+    """
+    self.strict_only = self.config["strict_only"]
+    self.backends_config = self.config["backends"]
+    self.skip_files = self.config["skip_files"]
+    self.min_length = self.config["min_length"]
+    self.max_capital = self.config["max_capital"]
+    self.ignore_code = self.config["ignore_code"]
+    self.allow_unicode = self.config["allow_unicode"]
+    self.run = config["strict"] or not self.strict_only
+
+    if not self.run:
+        return config
+
+    known_words = self.config["known_words"]
+    if isinstance(known_words, str):
+        self.known_words |= set(Path(config["docs_dir"], known_words).read_text().splitlines())
+    else:
+        self.known_words |= set(known_words)
+
+    self.backends = {}
+    for backend_conf in self.backends_config:
+        if isinstance(backend_conf, str):
+            backend_name = backend_conf
+            backend_config: dict[str, Any] = {}
+        else:
+            backend_name, backend_config = next(iter(backend_conf.items()))
+        self.backends[backend_name] = load_backend(backend_name)(
+            known_words=self.known_words,
+            config=backend_config,
+        )
+
+    return config
+
+```
+
+### `on_page_content(html: str, page: Page, **kwargs: Any) -> None`
+
+Spell check everything.
+
+Hook for the [`on_page_content` event](https://www.mkdocs.org/user-guide/plugins/#on_page_content).
+
+Parameters:
+
+| Name | Type | Description | Default | | --- | --- | --- | --- | | `html` | `str` | The HTML text. | *required* | | `page` | `Page` | The page instance. | *required* | | `**kwargs` | `Any` | Additional arguments passed by MkDocs. | `{}` |
+
+Source code in `src/mkdocs_spellcheck/_internal/plugin.py`
+
+```
+def on_page_content(self, html: str, page: Page, **kwargs: Any) -> None:  # noqa: ARG002
+    """Spell check everything.
+
+    Hook for the [`on_page_content` event](https://www.mkdocs.org/user-guide/plugins/#on_page_content).
+
+    Arguments:
+        html: The HTML text.
+        page: The page instance.
+        **kwargs: Additional arguments passed by MkDocs.
+    """
+    if self.run and not any(fnmatch(page.file.src_path, pattern) for pattern in self.skip_files):
+        words = get_words(
+            html,
+            known_words=self.known_words,
+            min_length=self.min_length,
+            max_capital=self.max_capital,
+            ignore_code=self.ignore_code,
+            allow_unicode=self.allow_unicode,
+        )
+        for word in words:
+            for backend in self.backends.values():
+                backend.check(page, word)
+
+```
+
+## `SymspellpyBackend(config: dict[str, Any], known_words: set[str] | None = None)`
+
+Bases: `Backend`
+
+Backend for the `symspellpy` library.
+
+This backend needs to load dictionaries provided by `symspellpy` itself.
+
+Parameters:
+
+| Name | Type | Description | Default | | --- | --- | --- | --- | | `config` | `dict[str, Any]` | User configuration from mkdocs.yml. | *required* | | `known_words` | `set[str] | None` | Globally known words. | `None` |
+
+Methods:
+
+| Name | Description | | --- | --- | | `check` | Check a word against the symspellpy dictionary. |
+
+Attributes:
+
+| Name | Type | Description | | --- | --- | --- | | `spell` | | The symspellpy spell checker. |
+
+Source code in `src/mkdocs_spellcheck/_internal/backends/symspellpy.py`
+
+```
+def __init__(self, config: dict[str, Any], known_words: set[str] | None = None) -> None:  # noqa: ARG002
+    """Initialize the `symspellpy` backend.
+
+    This backend needs to load dictionaries provided
+    by `symspellpy` itself.
+
+    Parameters:
+        config: User configuration from `mkdocs.yml`.
+        known_words: Globally known words.
+    """
+    self.spell = SymSpell()
+    """The `symspellpy` spell checker."""
+    dictionary_res = resources.files("symspellpy").joinpath("frequency_dictionary_en_82_765.txt")
+    with resources.as_file(dictionary_res) as dictionary_path:
+        self.spell.load_dictionary(dictionary_path, 0, 1)
+
+```
+
+### `spell = SymSpell()`
+
+The `symspellpy` spell checker.
+
+### `check(page: Page, word: str) -> None`
+
+Check a word against the `symspellpy` dictionary.
+
+Source code in `src/mkdocs_spellcheck/_internal/backends/symspellpy.py`
+
+```
+def check(self, page: Page, word: str) -> None:
+    """Check a word against the `symspellpy` dictionary."""
+    suggestions = self.spell.lookup(word, Verbosity.CLOSEST, max_edit_distance=2)
+    if suggestions:
+        candidates = "', '".join(suggestion.term for suggestion in suggestions if suggestion.term != word)
+        if candidates:
+            _logger.warning(f"(symspellpy) {page.file.src_path}: Misspelled '{word}', did you mean '{candidates}'?")
+    else:
+        _logger.warning(f"(symspellpy) {page.file.src_path}: Misspelled '{word}', no suggestions")
+
+```
+
+## `get_words(html: str, *, known_words: set[str] | None = None, min_length: int = 2, max_capital: int = 1, ignore_code: bool = True, allow_unicode: bool = True) -> list[str]`
+
+Get words in HTML text.
+
+Parameters:
+
+| Name | Type | Description | Default | | --- | --- | --- | --- | | `html` | `str` | The HTML text. | *required* | | `known_words` | `set[str] | None` | Words to exclude. | `None` | | `min_length` | `int` | Words minimum length. | `2` | | `max_capital` | `int` | Maximum number of capital letters. | `1` | | `ignore_code` | `bool` | Ignore words in code tags. | `True` | | `allow_unicode` | `bool` | Keep unicode characters. | `True` |
+
+Returns:
+
+| Type | Description | | --- | --- | | `list[str]` | A list of words. |
+
+Source code in `src/mkdocs_spellcheck/_internal/words.py`
+
+```
+def get_words(
+    html: str,
+    *,
+    known_words: set[str] | None = None,
+    min_length: int = 2,
+    max_capital: int = 1,
+    ignore_code: bool = True,
+    allow_unicode: bool = True,
+) -> list[str]:
+    """Get words in HTML text.
+
+    Parameters:
+        html: The HTML text.
+        known_words: Words to exclude.
+        min_length: Words minimum length.
+        max_capital: Maximum number of capital letters.
+        ignore_code: Ignore words in code tags.
+        allow_unicode: Keep unicode characters.
+
+    Returns:
+        A list of words.
+    """
+    known_words = known_words or set()
+    keep = partial(_keep_word, min_length=min_length, max_capital=max_capital)
+    filtered = filter(keep, _normalize(_strip_tags(html, ignore_code), allow_unicode).split("-"))
+    words = {word.lower() for word in filtered}
+    return sorted(words - known_words)
+
+```
+
+## `load_backend(name: str) -> type[Backend]`
+
+Load the specified backend.
+
+This function imports the specified backend and returns its class. It is important not to import the backends at the top level, as they may not be installed.
+
+Parameters:
+
+| Name | Type | Description | Default | | --- | --- | --- | --- | | `name` | `str` | The name of the backend to load. | *required* |
+
+Returns:
+
+| Type | Description | | --- | --- | | `type[Backend]` | The backend class. |
+
+Source code in `src/mkdocs_spellcheck/_internal/plugin.py`
+
+```
+def load_backend(name: str) -> type[Backend]:
+    """Load the specified backend.
+
+    This function imports the specified backend and returns its class.
+    It is important not to import the backends at the top level, as
+    they may not be installed.
+
+    Arguments:
+        name: The name of the backend to load.
+
+    Returns:
+        The backend class.
+    """
+    if name == "symspellpy":
+        from mkdocs_spellcheck._internal.backends import symspellpy
+
+        return symspellpy.SymspellpyBackend
+
+    if name == "codespell":
+        from mkdocs_spellcheck._internal.backends import codespell
+
+        return codespell.CodespellBackend
+
+    raise ValueError(f"Unknown backend: {name}")
+
+```
+
+## `backends`
+
+Deprecated. Import directly from `mkdocs_spellcheck` instead.
+
+Modules:
+
+| Name | Description | | --- | --- | | `codespell` | Deprecated. Import directly from mkdocs_spellcheck instead. | | `symspellpy` | Deprecated. Import directly from mkdocs_spellcheck instead. |
+
+### `codespell`
+
+Deprecated. Import directly from `mkdocs_spellcheck` instead.
+
+### `symspellpy`
+
+Deprecated. Import directly from `mkdocs_spellcheck` instead.
+
+## `plugin`
+
+Deprecated. Import directly from `mkdocs_spellcheck` instead.
+
+## `words`
+
+Deprecated. Import directly from `mkdocs_spellcheck` instead.
