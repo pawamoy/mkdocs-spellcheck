@@ -34,3 +34,5 @@ codespell
 mkdocs_spellcheck
 symspellpy
 autolinks
+deprecations
+submodules

@@ -1,0 +1,12 @@
+# MkDocs SpellCheck
+
+> A spell checker plugin for MkDocs.
+
+## Usage
+
+- [Overview](https://pawamoy.github.io/mkdocs-spellcheck/index.md)
+
+## API
+
+- [API reference](https://pawamoy.github.io/mkdocs-spellcheck/reference/api/index.md)
+
