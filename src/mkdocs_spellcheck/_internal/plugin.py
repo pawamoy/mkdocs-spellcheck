@@ -36,12 +36,12 @@ def load_backend(name: str) -> type[Backend]:
         The backend class.
     """
     if name == "symspellpy":
-        from mkdocs_spellcheck._internal.backends import symspellpy
+        from mkdocs_spellcheck._internal.backends import symspellpy  # noqa: PLC0415
 
         return symspellpy.SymspellpyBackend
 
     if name == "codespell":
-        from mkdocs_spellcheck._internal.backends import codespell
+        from mkdocs_spellcheck._internal.backends import codespell  # noqa: PLC0415
 
         return codespell.CodespellBackend
 
