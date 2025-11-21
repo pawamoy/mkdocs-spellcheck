@@ -42,6 +42,43 @@ def _strip_tags(html: str, ignore_code: bool) -> str:  # noqa: FBT001
     return stripper.get_data()
 
 
+_spell_check_guard_enable = "mkdocs-spellcheck-enable"
+_spell_check_guard_disable = "mkdocs-spellcheck-disable"
+
+
+class _SpellCheckGuardStripper(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.text = StringIO()
+        self.in_guard = False
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:  # noqa: ARG002
+        self.text.write(f"<{tag}>")
+
+    def handle_endtag(self, tag: str) -> None:
+        self.text.write(f"</{tag}>")
+
+    def handle_comment(self, data: str) -> None:
+        data = data.strip()
+        if data == _spell_check_guard_disable:
+            self.in_guard = True
+        elif data == _spell_check_guard_enable:
+            self.in_guard = False
+
+    def handle_data(self, data: str) -> None:
+        if not self.in_guard:
+            self.text.write(data)
+
+    def get_data(self) -> str:
+        return self.text.getvalue()
+
+
+def _strip_guarded_blocks(html: str) -> str:
+    stripper = _SpellCheckGuardStripper()
+    stripper.feed(html)
+    return stripper.get_data()
+
+
 _not_letters_nor_spaces = re.compile(r"(?:(\B\'|\'\B|\B\'\B|\'s)|[^\w\s\'-])")
 _dashes_or_spaces = re.compile(r"[-_\s]+")
 
@@ -94,6 +131,12 @@ def get_words(
     """
     known_words = known_words or set()
     keep = partial(_keep_word, min_length=min_length, max_capital=max_capital)
-    filtered = filter(keep, _normalize(_strip_tags(html, ignore_code), allow_unicode).split("-"))
+
+    # NOTE _strip_tags drops any comments, so we must handle guarded blocks
+    # before we can remove HTML tags.
+    stripped = _strip_guarded_blocks(html)
+    stripped = _strip_tags(stripped, ignore_code)
+
+    filtered = filter(keep, _normalize(stripped, allow_unicode).split("-"))
     words = {word.lower() for word in filtered}
     return sorted(words - known_words)

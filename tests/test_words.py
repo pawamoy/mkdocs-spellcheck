@@ -27,6 +27,36 @@ def test_remove_single_tags() -> None:
     assert "img" not in words
 
 
+def test_remove_guarded_blocks() -> None:
+    """Assert guarded text blocks are removed from HTML text."""
+    html = """\
+before
+<!-- mkdocs-spellcheck-disable -->
+between
+<!-- mkdocs-spellcheck-enable -->
+after
+"""
+    words = get_words(html, min_length=1)
+    assert "before" in words
+    assert "between" not in words
+    assert "after" in words
+
+
+def test_ignore_non_guarded_blocks() -> None:
+    """Assert other blocks are not removed from HTML text."""
+    html = """\
+before
+<!-- some-other-comment -->
+between
+<!-- yet-another-comment -->
+after
+"""
+    words = get_words(html, min_length=1)
+    assert "before" in words
+    assert "between" in words
+    assert "after" in words
+
+
 @pytest.mark.parametrize(
     ("text", "known_words", "expected"),
     [
