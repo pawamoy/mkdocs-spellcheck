@@ -78,3 +78,18 @@ The builtin dictionaries are:
     to be typos in other contexts (such as `uint`)
 - `names` for valid proper names that might be typos
 - `en-GB_to_en-US` for corrections from `en-GB` to `en-US`
+
+### Disabling spell checking for document regions
+
+In some situations it can be useful to temporarily disable spell checking for a document.
+To this end, MkDocs SpellCheck recognizes special guards `mkdocs-spellcheck-{enable,disable}`:
+
+```md
+Here MkDocs SpellCheck checks for correct spelling.
+
+<!-- mkdocs-spellcheck-disable -->
+In this block it doesn't.
+<!-- mkdocs-spellcheck-enable -->
+
+Here spelling checks are performed again.
+```
