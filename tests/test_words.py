@@ -31,9 +31,9 @@ def test_remove_guarded_blocks() -> None:
     """Assert guarded text blocks are removed from HTML text."""
     html = """\
 before
-<!-- mkdocs-spellcheck-disable -->
+<!-- mkdocs-spellcheck-off -->
 between
-<!-- mkdocs-spellcheck-enable -->
+<!-- mkdocs-spellcheck-on -->
 after
 """
     words = get_words(html, min_length=1)

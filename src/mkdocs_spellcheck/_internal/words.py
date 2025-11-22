@@ -9,6 +9,10 @@ from html.parser import HTMLParser
 from io import StringIO
 
 
+_spell_check_guard_on = "mkdocs-spellcheck-on"
+_spell_check_guard_off = "mkdocs-spellcheck-off"
+
+
 class _MLStripper(HTMLParser):
     def __init__(self, ignore_code: bool = True) -> None:  # noqa: FBT001,FBT002
         super().__init__()
@@ -18,6 +22,7 @@ class _MLStripper(HTMLParser):
         self.text = StringIO()
         self.ignore_code = ignore_code
         self.in_code_tag = False
+        self.in_guard = False
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:  # noqa: ARG002
         if tag == "code":
@@ -28,53 +33,28 @@ class _MLStripper(HTMLParser):
         if tag == "code":
             self.in_code_tag = False
 
-    def handle_data(self, data: str) -> None:
-        if not (self.ignore_code and self.in_code_tag):
-            self.text.write(data)
-
-    def get_data(self) -> str:
-        return self.text.getvalue()
-
-
-def _strip_tags(html: str, ignore_code: bool) -> str:  # noqa: FBT001
-    stripper = _MLStripper(ignore_code)
-    stripper.feed(html)
-    return stripper.get_data()
-
-
-_spell_check_guard_enable = "mkdocs-spellcheck-enable"
-_spell_check_guard_disable = "mkdocs-spellcheck-disable"
-
-
-class _SpellCheckGuardStripper(HTMLParser):
-    def __init__(self) -> None:
-        super().__init__()
-        self.text = StringIO()
-        self.in_guard = False
-
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:  # noqa: ARG002
-        self.text.write(f"<{tag}>")
-
-    def handle_endtag(self, tag: str) -> None:
-        self.text.write(f"</{tag}>")
-
     def handle_comment(self, data: str) -> None:
         data = data.strip()
-        if data == _spell_check_guard_disable:
+        if data == _spell_check_guard_off:
             self.in_guard = True
-        elif data == _spell_check_guard_enable:
+        elif data == _spell_check_guard_on:
             self.in_guard = False
 
     def handle_data(self, data: str) -> None:
-        if not self.in_guard:
-            self.text.write(data)
+        if self.ignore_code and self.in_code_tag:
+            return
+
+        if self.in_guard:
+            return
+
+        self.text.write(data)
 
     def get_data(self) -> str:
         return self.text.getvalue()
 
 
-def _strip_guarded_blocks(html: str) -> str:
-    stripper = _SpellCheckGuardStripper()
+def _strip_special_blocks(html: str, ignore_code: bool) -> str:  # noqa: FBT001
+    stripper = _MLStripper(ignore_code)
     stripper.feed(html)
     return stripper.get_data()
 
@@ -88,7 +68,11 @@ def _normalize(value: str, allow_unicode: bool = False) -> str:  # noqa: FBT001,
     if allow_unicode:
         value = unicodedata.normalize("NFKC", value)
     else:
-        value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
+        value = (
+            unicodedata.normalize("NFKD", value)
+            .encode("ascii", "ignore")
+            .decode("ascii")
+        )
     value = _not_letters_nor_spaces.sub(" ", value)
     return _dashes_or_spaces.sub("-", value).strip("-_")
 
@@ -131,12 +115,9 @@ def get_words(
     """
     known_words = known_words or set()
     keep = partial(_keep_word, min_length=min_length, max_capital=max_capital)
-
-    # NOTE _strip_tags drops any comments, so we must handle guarded blocks
-    # before we can remove HTML tags.
-    stripped = _strip_guarded_blocks(html)
-    stripped = _strip_tags(stripped, ignore_code)
-
-    filtered = filter(keep, _normalize(stripped, allow_unicode).split("-"))
+    filtered = filter(
+        keep,
+        _normalize(_strip_special_blocks(html, ignore_code), allow_unicode).split("-"),
+    )
     words = {word.lower() for word in filtered}
     return sorted(words - known_words)
