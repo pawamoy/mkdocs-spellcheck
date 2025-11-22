@@ -82,14 +82,14 @@ The builtin dictionaries are:
 ### Disabling spell checking for document regions
 
 In some situations it can be useful to temporarily disable spell checking for a document.
-To this end, MkDocs SpellCheck recognizes special guards `mkdocs-spellcheck-{enable,disable}`:
+To this end, MkDocs SpellCheck recognizes special guards `mkdocs-spellcheck-{on,off}`:
 
 ```md
 Here MkDocs SpellCheck checks for correct spelling.
 
-<!-- mkdocs-spellcheck-disable -->
+<!-- mkdocs-spellcheck-off -->
 In this block it doesn't.
-<!-- mkdocs-spellcheck-enable -->
+<!-- mkdocs-spellcheck-on -->
 
 Here spelling checks are performed again.
 ```
