@@ -35,10 +35,12 @@ class _MLStripper(HTMLParser):
 
     def handle_comment(self, data: str) -> None:
         data = data.strip()
-        if data == _spell_check_guard_off:
-            self.in_guard = True
-        elif data == _spell_check_guard_on:
-            self.in_guard = False
+
+        if not self.in_code_tag:
+            if data == _spell_check_guard_off:
+                self.in_guard = True
+            elif data == _spell_check_guard_on:
+                self.in_guard = False
 
     def handle_data(self, data: str) -> None:
         if self.ignore_code and self.in_code_tag:
@@ -53,7 +55,7 @@ class _MLStripper(HTMLParser):
         return self.text.getvalue()
 
 
-def _strip_special_blocks(html: str, ignore_code: bool) -> str:  # noqa: FBT001
+def _strip(html: str, ignore_code: bool) -> str:  # noqa: FBT001
     stripper = _MLStripper(ignore_code)
     stripper.feed(html)
     return stripper.get_data()
@@ -68,11 +70,7 @@ def _normalize(value: str, allow_unicode: bool = False) -> str:  # noqa: FBT001,
     if allow_unicode:
         value = unicodedata.normalize("NFKC", value)
     else:
-        value = (
-            unicodedata.normalize("NFKD", value)
-            .encode("ascii", "ignore")
-            .decode("ascii")
-        )
+        value = unicodedata.normalize("NFKD", value).encode("ascii", "ignore").decode("ascii")
     value = _not_letters_nor_spaces.sub(" ", value)
     return _dashes_or_spaces.sub("-", value).strip("-_")
 
@@ -115,9 +113,6 @@ def get_words(
     """
     known_words = known_words or set()
     keep = partial(_keep_word, min_length=min_length, max_capital=max_capital)
-    filtered = filter(
-        keep,
-        _normalize(_strip_special_blocks(html, ignore_code), allow_unicode).split("-"),
-    )
+    filtered = filter(keep, _normalize(_strip(html, ignore_code), allow_unicode).split("-"))
     words = {word.lower() for word in filtered}
     return sorted(words - known_words)

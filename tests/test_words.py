@@ -42,19 +42,26 @@ after
     assert "after" in words
 
 
-def test_ignore_non_guarded_blocks() -> None:
-    """Assert other blocks are not removed from HTML text."""
+@pytest.mark.parametrize(
+    ("ignore_code", "expected"),
+    [
+        (True, {"before", "after"}),
+        (False, {"before", "some", "guarded", "text", "after"}),
+    ],
+)
+def test_guarded_blocks_disabled_in_code_blocks(ignore_code: bool, expected: set[str]) -> None:
+    """Assert guarded blocks are disabled in code blocks."""
     html = """\
 before
-<!-- some-other-comment -->
-between
-<!-- yet-another-comment -->
+<code>
+<!-- mkdocs-spellcheck-off -->
+some guarded text
+<!-- mkdocs-spellcheck-on -->
+</code>
 after
 """
-    words = get_words(html, min_length=1)
-    assert "before" in words
-    assert "between" in words
-    assert "after" in words
+    words = get_words(html, ignore_code=ignore_code)
+    assert set(words)  == expected
 
 
 @pytest.mark.parametrize(
