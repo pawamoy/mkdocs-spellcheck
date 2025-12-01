@@ -61,7 +61,7 @@ some guarded text
 after
 """
     words = get_words(html, ignore_code=ignore_code)
-    assert set(words)  == expected
+    assert set(words) == expected
 
 
 @pytest.mark.parametrize(

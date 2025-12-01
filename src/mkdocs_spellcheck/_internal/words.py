@@ -8,7 +8,6 @@ from functools import partial
 from html.parser import HTMLParser
 from io import StringIO
 
-
 _spell_check_guard_on = "mkdocs-spellcheck-on"
 _spell_check_guard_off = "mkdocs-spellcheck-off"
 
