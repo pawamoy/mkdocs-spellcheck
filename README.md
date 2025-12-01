@@ -3,7 +3,7 @@
 [![ci](https://github.com/pawamoy/mkdocs-spellcheck/workflows/ci/badge.svg)](https://github.com/pawamoy/mkdocs-spellcheck/actions?query=workflow%3Aci)
 [![documentation](https://img.shields.io/badge/docs-mkdocs-708FCC.svg?style=flat)](https://pawamoy.github.io/mkdocs-spellcheck/)
 [![pypi version](https://img.shields.io/pypi/v/mkdocs-spellcheck.svg)](https://pypi.org/project/mkdocs-spellcheck/)
-[![gitter](https://badges.gitter.im/join%20chat.svg)](https://app.gitter.im/#/room/#mkdocs-spellcheck:gitter.im)
+[![gitter](https://img.shields.io/badge/matrix-chat-4DB798.svg?style=flat)](https://app.gitter.im/#/room/#mkdocs-spellcheck:gitter.im)
 
 A spell checker plugin for MkDocs.
 
@@ -79,7 +79,7 @@ The builtin dictionaries are:
 - `names` for valid proper names that might be typos
 - `en-GB_to_en-US` for corrections from `en-GB` to `en-US`
 
-### Disabling spell checking for document regions
+### On-off regions
 
 In some situations it can be useful to temporarily disable spell checking for a document.
 To this end, MkDocs SpellCheck recognizes special guards `mkdocs-spellcheck-{on,off}`:
@@ -93,3 +93,9 @@ In this block it doesn't.
 
 Here spelling checks are performed again.
 ```
+
+## Sponsors
+
+<!-- sponsors-start -->
+<!-- sponsors-end -->
+

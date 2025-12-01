@@ -1,5 +1,5 @@
 # Changes here will be overwritten by Copier.
-_commit: 1.8.6
+_commit: 1.11.2
 _src_path: gh:pawamoy/copier-uv
 author_email: dev@pawamoy.fr
 author_fullname: Timothée Mazzucotelli
@@ -8,7 +8,6 @@ copyright_date: '2022'
 copyright_holder: Timothée Mazzucotelli
 copyright_holder_email: dev@pawamoy.fr
 copyright_license: ISC
-insiders: false
 project_description: A spell checker plugin for MkDocs.
 project_name: MkDocs SpellCheck
 python_package_command_line_name: ''
