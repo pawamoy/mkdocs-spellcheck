@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.2.0](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/1.2.0) - 2025-12-01
+
+<small>[Compare with 1.1.2](https://github.com/pawamoy/mkdocs-spellcheck/compare/1.1.2...1.2.0)</small>
+
+### Features
+
+- Allow disabling spellcheck in specific regions thanks to HTML comments ([17e4ff3](https://github.com/pawamoy/mkdocs-spellcheck/commit/17e4ff307c9b9c71db8462b3d46463c02185235f) by Tobias Langer). [Issue #33](https://github.com/pawamoy/mkdocs-spellcheck/issues/33), [PR-34](https://github.com/pawamoy/mkdocs-spellcheck/pull/34)
+
 ## [1.1.2](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/1.1.2) - 2025-08-05
 
 <small>[Compare with 1.1.1](https://github.com/pawamoy/mkdocs-spellcheck/compare/1.1.1...1.1.2)</small>
