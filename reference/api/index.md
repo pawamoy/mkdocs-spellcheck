@@ -59,7 +59,6 @@ def __init__(self, config: dict[str, Any], known_words: set[str] | None = None) 
         known_words: Globally known words.
     """
     raise NotImplementedError
-
 ```
 
 ### `check(page: Page, word: str) -> None`
@@ -85,7 +84,6 @@ def check(self, page: Page, word: str) -> None:
         word: The word to check.
     """
     raise NotImplementedError
-
 ```
 
 ## `CodespellBackend(config: dict[str, Any], known_words: set[str] | None = None)`
@@ -140,7 +138,6 @@ def __init__(self, config: dict[str, Any], known_words: set[str] | None = None) 
 
     for dictionary in use_dictionaries:
         build_dict(dictionary, self.misspellings, known_words)
-
 ```
 
 ### `misspellings: dict[str, Misspelling] = {}`
@@ -160,7 +157,6 @@ def check(self, page: Page, word: str) -> None:
         # reason = self.misspellings[word].reason
         fixword = fix_case(word, self.misspellings[word].data)
         _logger.warning(f"(codespell) {page.file.src_path}: Misspelled '{word}', did you mean '{fixword}'?")
-
 ```
 
 ## `SpellCheckPlugin()`
@@ -204,7 +200,6 @@ def __init__(self) -> None:
     self.known_words: set[str] = set()
     """Words to ignore."""
     super().__init__()
-
 ```
 
 ### `allow_unicode: bool`
@@ -306,7 +301,6 @@ def on_config(self, config: MkDocsConfig) -> MkDocsConfig | None:
         )
 
     return config
-
 ```
 
 ### `on_page_content(html: str, page: Page, **kwargs: Any) -> None`
@@ -348,7 +342,6 @@ def on_page_content(self, html: str, page: Page, **kwargs: Any) -> None:  # noqa
         for word in words:
             for backend in self.backends.values():
                 backend.check(page, word)
-
 ```
 
 ## `SymspellpyBackend(config: dict[str, Any], known_words: set[str] | None = None)`
@@ -396,7 +389,6 @@ def __init__(self, config: dict[str, Any], known_words: set[str] | None = None) 
     dictionary_res = resources.files("symspellpy").joinpath("frequency_dictionary_en_82_765.txt")
     with resources.as_file(dictionary_res) as dictionary_path:
         self.spell.load_dictionary(dictionary_path, 0, 1)
-
 ```
 
 ### `spell = SymSpell()`
@@ -421,7 +413,6 @@ def check(self, page: Page, word: str) -> None:
             )
     else:
         _logger.warning(f"(symspellpy) {page.file.src_path}: Misspelled '{word}', no suggestions")
-
 ```
 
 ## `get_words(html: str, *, known_words: set[str] | None = None, min_length: int = 2, max_capital: int = 1, ignore_code: bool = True, allow_unicode: bool = True) -> list[str]`
@@ -472,10 +463,9 @@ def get_words(
     """
     known_words = known_words or set()
     keep = partial(_keep_word, min_length=min_length, max_capital=max_capital)
-    filtered = filter(keep, _normalize(_strip_tags(html, ignore_code), allow_unicode).split("-"))
+    filtered = filter(keep, _normalize(_strip(html, ignore_code), allow_unicode).split("-"))
     words = {word.lower() for word in filtered}
     return sorted(words - known_words)
-
 ```
 
 ## `load_backend(name: str) -> type[Backend]`
@@ -523,7 +513,6 @@ def load_backend(name: str) -> type[Backend]:
         return codespell.CodespellBackend
 
     raise ValueError(f"Unknown backend: {name}")
-
 ```
 
 ## `backends`

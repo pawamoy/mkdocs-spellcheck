@@ -1,5 +1,7 @@
 # MkDocs SpellCheck
 
+> [!WARNING] This project is in maintenance mode. I'm now dedicating my time to [Zensical](https://zensical.org/). Feel free to reach out for a responsible transfer of maintainership.
+
 A spell checker plugin for MkDocs.
 
 This plugin can use different backends to check the spelling of words in your final HTML pages. These backends are:
@@ -16,7 +18,6 @@ pip install 'mkdocs-spellcheck[all]'
 pip install 'mkdocs-spellcheck[codespell]'
 pip install 'mkdocs-spellcheck[symspellpy]'
 pip install 'mkdocs-spellcheck[codespell,symspellpy]'
-
 ```
 
 ## Usage
@@ -54,7 +55,6 @@ plugins:
 
     # whether to only check in strict mode
     strict_only: yes
-
 ```
 
 By default, the `symspellpy` backend is used.
@@ -72,3 +72,19 @@ The builtin dictionaries are:
 - `code` for words from code and/or mathematics that are likely to be typos in other contexts (such as `uint`)
 - `names` for valid proper names that might be typos
 - `en-GB_to_en-US` for corrections from `en-GB` to `en-US`
+
+### On-off regions
+
+In some situations it can be useful to temporarily disable spell checking for a document. To this end, MkDocs SpellCheck recognizes special guards `mkdocs-spellcheck-{on,off}`:
+
+```
+Here MkDocs SpellCheck checks for correct spelling.
+
+<!-- mkdocs-spellcheck-off -->
+In this block it doesn't.
+<!-- mkdocs-spellcheck-on -->
+
+Here spelling checks are performed again.
+```
+
+## Sponsors
