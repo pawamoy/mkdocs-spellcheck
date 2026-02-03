@@ -21,16 +21,21 @@ class _MLStripper(HTMLParser):
         self.text = StringIO()
         self.ignore_code = ignore_code
         self.in_code_tag = False
+        self.in_script_tag = False
         self.in_guard = False
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:  # noqa: ARG002
         if tag == "code":
             self.in_code_tag = True
+        if tag == "script":
+            self.in_script_tag = True
         self.text.write(" ")
 
     def handle_endtag(self, tag: str) -> None:
         if tag == "code":
             self.in_code_tag = False
+        if tag == "script":
+            self.in_script_tag = False
 
     def handle_comment(self, data: str) -> None:
         data = data.strip()
@@ -43,6 +48,9 @@ class _MLStripper(HTMLParser):
 
     def handle_data(self, data: str) -> None:
         if self.ignore_code and self.in_code_tag:
+            return
+
+        if self.in_script_tag:
             return
 
         if self.in_guard:
