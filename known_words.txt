@@ -36,3 +36,5 @@ symspellpy
 autolinks
 deprecations
 submodules
+maintainership
+zensical

@@ -88,3 +88,11 @@ Here spelling checks are performed again.
 ```
 
 ## Sponsors
+
+**Silver sponsors**
+
+**Bronze sponsors**
+
+______________________________________________________________________
+
+*And 7 more private sponsor(s).*
