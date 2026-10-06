@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 <!-- insertion marker -->
+## [1.2.2](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/1.2.2) - 2026-10-06
+
+<small>[Compare with 1.2.1](https://github.com/pawamoy/mkdocs-spellcheck/compare/1.2.1...1.2.2)</small>
+
+### Build
+
+- Drop support for Python 3.10 ([6f04fb6](https://github.com/pawamoy/mkdocs-spellcheck/commit/6f04fb6edf6e8b6d7c8f96e573789e6096040d9c) by Timothée Mazzucotelli).
+
 ## [1.2.1](https://github.com/pawamoy/mkdocs-spellcheck/releases/tag/1.2.1) - 2026-02-11
 
 <small>[Compare with 1.2.0](https://github.com/pawamoy/mkdocs-spellcheck/compare/1.2.0...1.2.1)</small>
